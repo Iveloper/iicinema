@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent {
-  title = 'iicinema';
+  public title = 'iicinema';
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
 }

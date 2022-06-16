@@ -1,0 +1,37 @@
+<app-filters [elements]="actors" [type]="'actors'"></app-filters>
+<div class="loading-spinner">
+    <mat-spinner *ngIf="loading$ | async"></mat-spinner>
+</div>
+<div class="actors">
+    <ng-container *ngFor="let actor of actors">
+        <li>
+            <a class="poster-holder" routerLink="/actor/{{actor.id}}">
+                <img [src]="actor.image.url"/>
+            </a>
+            <a routerLink="/actor/{{actor.id}}">
+                <h2>
+                    <span>
+                        {{actor.name}}
+                    </span>
+                </h2>
+            </a>
+            
+            <div class="casting-holder">
+                Known for: 
+                <ng-container *ngFor="let starred of actor.knownFor; let last = last">
+                    <div class="actor-known-for-holder" *ngIf="starred.titleType == 'tvSeries'">
+                        <a routerLink="/show/{{starred.id}}">
+                            {{starred.title}}<span *ngIf="!last">, </span>
+                        </a>
+                    </div>
+                    <div class="actor-known-for-holder" *ngIf="starred.titleType == 'movie'">
+                        <a routerLink="/movie/{{starred.id}}">
+                            {{starred.title}}<span *ngIf="!last">, </span>
+                        </a>
+                    </div>
+                </ng-container>
+            </div>
+        </li>
+    </ng-container>
+</div>
+    

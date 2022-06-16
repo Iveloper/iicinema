@@ -1,0 +1,15 @@
+<form class="search-form" (ngSubmit)="getTitlesBySearch(search)">
+    <p>
+        <mat-form-field appearance="legacy">
+            <input matInput name="search" [(ngModel)]="search" placeholder="Search Titles" type="text"
+            (input)="onSearchChange(search)">
+            <div class="remove-input-value" *ngIf="isInputPopulated">
+                <mat-icon (click)="deleteSearchInput()">close</mat-icon>
+            </div>
+            <button type="submit" [disabled]="!isValueLengthEnough">
+                <mat-icon matSuffix>search</mat-icon>
+            </button>
+            <mat-hint>At least 3 symbols</mat-hint>
+        </mat-form-field>
+    </p>
+</form>

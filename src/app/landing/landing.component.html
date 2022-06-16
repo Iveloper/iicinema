@@ -1,0 +1,41 @@
+<div class="landing-container">
+    <ng-container>
+        <div class="component-header" 
+        (mouseenter)="animatedHover($event, 'show')" 
+        (mouseleave)="animatedHover($event, 'hide')">
+            <span>Movies:</span> 
+            <a [routerLink]="['/movies']">
+                <span class="hover-text">Explore 
+                    <mat-icon>keyboard_arrow_right</mat-icon>
+                </span>
+            </a>
+        </div>
+        <app-movies></app-movies>
+    </ng-container>
+
+    <ng-container>
+        <div class="component-header"       
+        (mouseenter)="animatedHover($event, 'show')" 
+        (mouseleave)="animatedHover($event, 'hide')">
+            <span>TV Shows:</span> 
+            <a [routerLink]="['/shows']">
+                <span class="hover-text">Explore 
+                    <mat-icon>keyboard_arrow_right</mat-icon>
+                </span>
+            </a></div>
+        <app-shows></app-shows>
+    </ng-container>
+
+    <ng-container>
+        <div class="component-header"       
+        (mouseenter)="animatedHover($event, 'show')" 
+        (mouseleave)="animatedHover($event, 'hide')">
+            <span>Actors:</span> 
+            <a [routerLink]="['/actors']">
+                <span class="hover-text">Explore 
+                    <mat-icon>keyboard_arrow_right</mat-icon>
+                </span>
+            </a></div>
+        <app-actors></app-actors>
+    </ng-container>
+</div>

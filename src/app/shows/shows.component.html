@@ -1,0 +1,30 @@
+<app-filters [elements]="shows"></app-filters>
+<div class="loading-spinner">
+    <mat-spinner *ngIf="loading$ | async"></mat-spinner>
+</div>
+<div class="shows">
+    <ng-container *ngFor="let show of shows">
+        <li>
+            <a class="poster-holder" routerLink="/show/{{show.id}}">
+                <img [src]="show.image.url"/>
+            </a>
+            <a routerLink="/show/{{show.id}}">
+                <h2>
+                    <span>
+                        {{show.title}}
+                    </span>
+                </h2>
+            </a>
+            <h4>
+                <span>
+                    ({{show.seriesStartYear}} - {{show.seriesEndYear}}) / 
+                    {{show.runningTimeInMinutes|minutesToHours}}
+                </span>
+            </h4>
+            <div class="casting-holder">
+                Starring: {{show.credits|symbolSeparating: ', '}}
+            </div>
+        </li>
+    </ng-container>
+</div>
+    

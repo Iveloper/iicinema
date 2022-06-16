@@ -1,0 +1,43 @@
+<div class="filter-holder">
+    <mat-toolbar>
+        <mat-toolbar-row>
+            <span>Filters:</span>
+            <ng-container *ngIf="type == 'actors'">
+                <button (click)="filterElements('name')">
+                    <mat-icon>title</mat-icon>
+                    <span>By name</span>
+                    <div *ngIf="nameOrder">
+                        <mat-icon *ngIf="ascending">arrow_upward</mat-icon>
+                        <mat-icon *ngIf="!ascending">arrow_downward</mat-icon>
+                    </div>
+                </button>
+            </ng-container>
+            <ng-container *ngIf="!type">
+                <button (click)="filterElements('year')">
+                    <mat-icon>date_range</mat-icon>
+                    <span>By year</span>
+                    <div *ngIf="yearOrder">
+                        <mat-icon *ngIf="ascending">arrow_upward</mat-icon>
+                        <mat-icon *ngIf="!ascending">arrow_downward</mat-icon>
+                    </div>
+                </button>
+                <button (click)="filterElements('title')">
+                    <mat-icon>title</mat-icon>
+                    <span>By name</span>
+                    <div *ngIf="abcOrder">
+                        <mat-icon *ngIf="ascending">arrow_upward</mat-icon>
+                        <mat-icon *ngIf="!ascending">arrow_downward</mat-icon>
+                    </div>
+                </button>
+                <button (click)="filterElements('runningTimeInMinutes')">
+                    <mat-icon>hourglass_full</mat-icon>
+                    <span>By length</span>
+                    <div *ngIf="runTimeOrder">
+                        <mat-icon *ngIf="ascending">arrow_upward</mat-icon>
+                        <mat-icon *ngIf="!ascending">arrow_downward</mat-icon>
+                    </div>
+                </button>
+            </ng-container>
+        </mat-toolbar-row>
+    </mat-toolbar>
+</div>

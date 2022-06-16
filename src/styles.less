@@ -1,1 +1,149 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Oswald&display=swap");
+@mainFont: 'Oswald', sans-serif;
+@primaryWhite: #fff;
+@secondaryWhite: rgb(167, 167, 167);
+@primaryDark: #272727;
+@secondaryDark: #333;
+@borderRadius: 12px;
+@sizes: {
+  mobile: 500px;
+  tablet: 768px;
+  desktop: 1024px;
+};
+.h1Size(@percent: 350%) {
+  font-size: @percent;
+}
+/* Application-wide Styles */
+h1 {
+  color: @primaryWhite;
+  font-family: @mainFont !important;
+  .h1Size() !important;
+}
+h2, h3 {
+  color: @primaryWhite;
+  font-family: @mainFont;
+  font-weight: lighter;
+}
+body {
+    background: @secondaryDark !important;
+    margin: 2em;
+    .main-menu {
+      width: 180px;
+      @media (max-width: @sizes[tablet]) {
+        width: auto;
+      }
+    }
+    .loading-spinner {
+      display: flex;
+      justify-content: center;
+      .mat-spinner {
+        margin: 10px;
+        circle {
+          stroke: @primaryWhite;
+          stroke-width: 5% !important;
+          animation-timing-function: cubic-bezier(0.15, 0, 0.15, 1) !important;
+        }
+      }
+    }
+    .filter-holder {
+      padding: 10px;
+      .mat-toolbar {
+        border-radius: @borderRadius;
+        .mat-toolbar-row {
+          display: flex;
+          button {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem;
+            background-color: transparent;
+            &:hover {
+              background-color: @secondaryDark;
+            }
+            div {
+              display: initial;
+              margin-top: 0.5rem;
+            }
+          }
+        }
+      }
+    }
+}
+body,
+input[type="text"],
+button {
+  color: @secondaryDark;
+  font-family: @mainFont;
+}
+button {
+  background-color: @primaryWhite;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: @primaryDark;
+  font-size: 1.2rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  &:hover {
+    background-color: @primaryDark;
+    color: @primaryWhite;
+  }
+  &:disabled {
+    background-color: @primaryWhite;
+    color: #aaa;
+    cursor: auto;
+  }
+}
+.mat-menu-content {
+  a {
+    text-decoration: none;
+    color: @primaryDark;
+    font-size: 20px;
+    &:hover {
+      color: darken(@primaryDark, 20%) !important;
+    }
+  }
+}
+.material-icons {
+  font-family: 'Material Icons' !important; 
+}
+.main-toolbar {
+  display: flex !important;
+  justify-content: space-around;
+  height: 5.5rem !important;
+  background-color: @primaryDark !important;
+  button {
+    background-color: @primaryDark;
+    color: @primaryWhite;
+    .mat-icon {
+      padding: 0.8rem;
+    }
+  }
+  .app-title {
+    color: @primaryWhite;
+    font-size: 40px;
+  }
+}
+.movies, .shows, .actors {
+  a {
+    text-decoration: none;
+  }
+  .poster-holder {
+    max-height: 450px;
+    min-height: 450px;
+    img {
+      height: 450px
+
+    }
+  }
+  .casting-holder {
+    padding: 0 10px 0 10px;
+    color: @primaryWhite;
+  }
+}
+* {
+  font-family: @mainFont;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

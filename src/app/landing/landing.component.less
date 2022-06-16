@@ -1,0 +1,42 @@
+@import '/src/styles.less';
+
+.landing-container {
+    .component-header {
+        width: 20%;
+        height: 4.5rem;
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+        color: @primaryWhite;
+        font-size: 40px;
+        .hover-text {
+            display: none;
+            font-size: 22px;
+            padding-left: 10px;
+        }
+        a {
+            text-decoration: none;
+            color: @primaryWhite;
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+    .active {
+        .hover-text {
+            display: initial;
+            &:hover {
+                .mat-icon {
+                    color:#fff;
+                    background-color:#333333;
+                    transition: 1s;
+                    -webkit-transform: translateX(10px); 
+                    -moz-transform: translateX(10px); 
+                    -ms-transform: translateX(10px); 
+                    -o-transform: translateX(10px); 
+                    transform: translateX(10px); 
+                }
+            }
+        }
+    }
+}

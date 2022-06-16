@@ -1,0 +1,44 @@
+@import '/src/styles.less';
+
+.search-form {
+    ::ng-deep .mat-form-field-underline, ::ng-deep .mat-hint, ::ng-deep .mat-form-field-wrapper {
+        color: @primaryWhite !important;
+    }
+    ::ng-deep .mat-form-field-wrapper {
+        margin-top: 0.5rem;
+    }
+    ::ng-deep .mat-form-field-infix {
+        button {
+            background: none;
+            color: inherit;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            outline: inherit;
+            margin: -1.5rem;
+            border: none;
+            height: max-content;
+            width: unset;
+            ::ng-deep .mat-icon {
+                font-size: 120%;
+                padding: unset;
+            }
+            &:disabled {
+                color: @secondaryWhite;
+                cursor: not-allowed;
+            }
+        }
+        input {
+            color: @primaryWhite;
+            height: 1.6rem;
+        }
+    }
+    .remove-input-value {
+        margin: -1.5rem;
+        display: inline;
+        .mat-icon {
+            cursor: pointer;
+        }
+    }
+    
+}
