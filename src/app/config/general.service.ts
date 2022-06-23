@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
 import { BehaviorSubject, catchError, finalize, forkJoin, Observable, of, tap } from 'rxjs';
 import { MessageService } from 'src/app/message.service';
 
@@ -9,7 +8,7 @@ const httpOptions = {
     method: 'GET',
     headers: new HttpHeaders({
         'X-RapidAPI-Host': 'online-movie-database.p.rapidapi.com',
-        'X-RapidAPI-Key': 'b2650efbb1msh00dd827cee6bdaep1dcbfdjsn7e6cf628cffc'
+        'X-RapidAPI-Key': '2699f5c2bemsh20923a10f7b86e8p1fa75ajsnbf2ce7219f22'
     })
 };
 
@@ -59,29 +58,41 @@ export class GeneralService {
         );
     }
 
-    getProjectionTopCastIds(projectionId: string): Observable<any> {
-        return this.http.get<any>(
-            `${APIurl}title/get-top-cast?tconst=${projectionId}&limit=5`,
-            httpOptions
-        ).pipe(
-            tap(_ => this.messageService.clear()),
-            tap(_ => this.log(`fetched cast for ${projectionId}`)),
-            catchError(this.handleError<any>('getTopCastIds', []))
+    getProjectionCreditsReviews(projectionId: string): Observable<any> {
+        this.loading$.next(true)
+        return forkJoin({
+            reviews: this.http.get<any>(`${APIurl}title/get-user-reviews?tconst=${projectionId}`, httpOptions),
+            credits: this.http.get<any>(`${APIurl}title/get-full-credits?tconst=${projectionId}`, httpOptions)
+        }).pipe(
+            catchError(this.handleError<any>('getTopCastIds', [])),
+            finalize(() => this.loading$.next(false))
         );
     }
 
-    getTopCastInformation(topCastIds: Array<String>) {
+    getMoreLikeThisId(projectionId: string): Observable<any> {
+        this.loading$.next(true)
+        return this.http.get<any>(
+            `${APIurl}title/get-more-like-this?tconst=${projectionId}`,
+            httpOptions
+        ).pipe(
+            catchError(this.handleError<any>('getMoreLikeThisId', [])),
+            finalize(() => this.loading$.next(false))
+        )
+    }
+
+    getMoreLikeThisDetails(projectionsId: Array<String>) {
+        this.loading$.next(true);
         return forkJoin(
-            topCastIds.map(cast =>
+            projectionsId.map(projection =>
                 this.http.get<any>(
-                    `${APIurl}auto-complete?q=${cast}`,
+                    `${APIurl}title/get-details?tconst=${projection}`,
                     httpOptions
                 ).pipe(
-                    tap(_ => this.messageService.clear()),
-                    tap(_ => this.log(`fetched cast info`)),
-                    catchError(this.handleError<any>('getTopCastInfo', []))
+                    catchError(this.handleError<any>('getMoreLikeThisDetails', [])),
                 )
             )
+        ).pipe(
+            finalize(() => this.loading$.next(false))
         );
     }
 

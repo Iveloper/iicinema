@@ -1,1 +1,114 @@
-@import "~bootstrap/dist/css/bootstrap.css";
+@import '/src/styles.less';
+@marginTop: 15px;
+.actor-details-holder {
+    margin-bottom: 20px;
+    h2 {
+        text-align: center;
+        font-size: 24px;
+    }
+    .poster-holder {
+        display: flex;
+        flex-direction: column;
+        margin-top: @marginTop;
+        img {
+            margin: 0 auto;
+            border-radius: @borderRadius;
+            max-height: 450px;
+            max-width: 335px;
+        }
+    }
+    .actor-basic-info-holder{
+        .mat-toolbar {
+            border-radius: @borderRadius;
+            background-color: @primaryDark;
+            color: @primaryWhite;
+            margin-top: @marginTop;
+            .mat-toolbar-row {
+                padding: 20px;
+                justify-content: space-between;
+                div {
+                    display: flex;
+                    align-items: center;
+                }
+            }
+        }
+    }
+    .actor-description-chart-holder {
+        margin-top: @marginTop;
+        padding: 15px;
+        border-radius: @borderRadius;
+        background-color: @primaryDark;
+        color: @primaryWhite;
+        .toggle-icons {
+            .mat-icon {
+                margin: 5px;
+                font-size: 30px;
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+            .clickedIcon {
+                &:hover {
+                    cursor: initial;
+                }
+                color: @secondaryDark;
+            }
+        }
+        p {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            padding: 10px;
+            font-size: 20px;
+            line-height: 30px;
+            .mat-icon {
+                color: @primaryWhite;
+            }
+            span {
+                margin-left: 5px;
+            }
+        }
+        .awards-container {
+            div {
+                display: block;
+                font-size: 20px;
+                padding: 10px;
+            }
+            .mat-icon {
+                margin-right: 10px;
+            }
+        }
+    }
+    .more-like-this-holder {
+        .container-title {
+            text-align: unset;
+            padding-left: 4rem;
+        }
+        margin-top: 15px;
+        margin-bottom: 20px;
+        .container-title {
+            color: @primaryWhite;
+            margin-top: 15px;
+            margin-bottom: unset;
+        }
+        .mlt-movie-details {
+            border-radius: @borderRadius;
+            a {
+                text-decoration: none;
+                &:hover {
+                    span {
+                        color: @secondaryWhite;
+                    }
+                }
+            }
+            h2, h4 {
+                text-align: center;
+                margin-bottom: unset;
+                color: @primaryWhite;
+            }
+            h2 {
+                font-size: 24px;
+            }
+        }
+    }
+}

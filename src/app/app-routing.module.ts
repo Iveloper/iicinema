@@ -28,7 +28,7 @@ export const routes: Routes = [
     } 
   },
   { 
-    path: 'movie/title/:id', 
+    path: 'movies/title/:id', 
     component: MovieDetailComponent,
     data: {
       show: false
@@ -44,7 +44,7 @@ export const routes: Routes = [
     }
   },
   { 
-    path: 'show/title/:id', 
+    path: 'shows/title/:id', 
     component: ShowDetailComponent,
     data: {
       show: false
@@ -60,7 +60,7 @@ export const routes: Routes = [
     } 
   },
   { 
-    path: 'actor/name/:id', 
+    path: 'actors/name/:id', 
     component: ActorDetailComponent,
     data: {
       show: false

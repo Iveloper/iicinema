@@ -3,9 +3,9 @@
         <div class="component-header" 
         (mouseenter)="animatedHover($event, 'show')" 
         (mouseleave)="animatedHover($event, 'hide')">
-            <span>Movies:</span> 
+            <span>{{'landing.movies' | translate}}:</span> 
             <a [routerLink]="['/movies']">
-                <span class="hover-text">Explore 
+                <span class="hover-text">{{'landing.explore' | translate}} 
                     <mat-icon>keyboard_arrow_right</mat-icon>
                 </span>
             </a>
@@ -17,9 +17,9 @@
         <div class="component-header"       
         (mouseenter)="animatedHover($event, 'show')" 
         (mouseleave)="animatedHover($event, 'hide')">
-            <span>TV Shows:</span> 
+            <span>{{'landing.tv_shows' | translate}}:</span> 
             <a [routerLink]="['/shows']">
-                <span class="hover-text">Explore 
+                <span class="hover-text">{{'landing.explore' | translate}} 
                     <mat-icon>keyboard_arrow_right</mat-icon>
                 </span>
             </a></div>
@@ -30,9 +30,9 @@
         <div class="component-header"       
         (mouseenter)="animatedHover($event, 'show')" 
         (mouseleave)="animatedHover($event, 'hide')">
-            <span>Actors:</span> 
+            <span>{{'landing.actors' | translate}}:</span> 
             <a [routerLink]="['/actors']">
-                <span class="hover-text">Explore 
+                <span class="hover-text">{{'landing.explore' | translate}} 
                     <mat-icon>keyboard_arrow_right</mat-icon>
                 </span>
             </a></div>

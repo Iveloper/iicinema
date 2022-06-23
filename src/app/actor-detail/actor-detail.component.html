@@ -1,1 +1,137 @@
-<p>actor-detail works!</p>
+<div class="loading-spinner">
+    <mat-spinner *ngIf="loading$ | async"></mat-spinner>
+</div>
+<div class="actor-details-holder" *ngIf="actor">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-12 col-lg-4">
+                <div class="poster-holder">
+                    <img [src]="actor.image.url"/>
+                </div>
+                <h2> {{actor.name}} </h2>
+            </div>
+            <div class="col-12 col-md-12 col-lg-8">
+                <div class="actor-basic-info-holder">
+                    <mat-toolbar>
+                        <mat-toolbar-row class="d-flex justify-content-center">
+                            <div *ngIf="actor.birthDate">
+                                <mat-icon title="{{'actor-detail.birth_date'|translate}}">date_range</mat-icon>
+                                <span>{{actor.birthDate}}</span>
+                            </div>
+                        </mat-toolbar-row>
+                        <mat-toolbar-row class="d-flex justify-content-center">
+                            <div *ngIf="actor.birthPlace">
+                                <mat-icon title="{{'actor-detail.birth_place'|translate}}">location_city</mat-icon>
+                                <span>{{actor.birthPlace}}</span>
+                            </div>
+                        </mat-toolbar-row>
+                        <mat-toolbar-row class="d-flex justify-content-center">
+                            <div *ngIf="actor.heightCentimeters">
+                                <mat-icon title="{{'actor-detail.height'|translate}}">person_outline</mat-icon>
+                                <span>{{actor.heightCentimeters}}{{'actor-detail.sm'|translate}}</span>
+                            </div>
+                        </mat-toolbar-row>
+                        <mat-toolbar-row class="d-flex justify-content-center">
+                            <div *ngIf="actor.gender == 'male'">
+                                <span >{{'actor-detail.gender'|translate}} {{'actor-detail.male'|translate}}</span>
+                            </div>
+                            <div *ngIf="actor.gender == 'female'">
+                                <span >{{'actor-detail.gender'|translate}} {{'actor-detail.female'|translate}}</span>
+                            </div>
+                        </mat-toolbar-row>
+                    </mat-toolbar>
+                </div>
+                <div class="actor-description-chart-holder">
+                    <div class="toggle-icons">
+                        <mat-icon
+                        title = "{{'actor-detail.biography'|translate}}"
+                        (click)="toggleDescription = false"  
+                        [class.clickedIcon] = "!toggleDescription">
+                            info
+                        </mat-icon>
+                        <mat-icon
+                        title = "{{'actor-detail.awards'|translate}}"
+                        (click) = "toggleDescription = true"  
+                        [class.clickedIcon] = "toggleDescription"> 
+                            monetization_on
+                        </mat-icon>
+                    </div>
+                    <div class="biography-container" *ngIf="!toggleDescription">
+                        <p> {{actor.miniBios[0].text}} </p>
+                        <p *ngIf="actor.miniBios[0].author"> 
+                            <mat-icon title="{{'actor-detail.author'|translate}}">account_circle</mat-icon>
+                            <span> {{actor.miniBios[0].author}} </span> 
+                        </p>
+                    </div>
+                    <div class="awards-container" *ngIf="toggleDescription">
+                        <div class="awards-holder" *ngIf="awards.awardsSummary.otherNominationsCount > 0">
+                            <div>
+                                <mat-icon>monetization_on</mat-icon>
+                                <ng-container *ngIf="awards.awardsSummary.highlighted.isWinner">
+                                    {{awards.awardsSummary.highlighted.awardName}}: {{awards.awardsSummary.highlighted.count}}-{{'actor-detail.time'|translate}} {{'actor-detail.won'|translate}}
+                                </ng-container>
+                                <ng-container *ngIf="!awards.awardsSummary.highlighted.isWinner">
+                                    {{awards.awardsSummary.highlighted.awardName}}: {{awards.awardsSummary.highlighted.count}}-{{'actor-detail.time'|translate}} {{'actor-detail.nominated'|translate}}
+                                </ng-container>
+                            </div>
+                            <div>
+                                <mat-icon>filter_2</mat-icon>
+                                {{'actor-detail.other_nominations'|translate}}: {{awards.awardsSummary.otherNominationsCount}}
+                            </div>
+                            <div>
+                                <mat-icon>filter_1</mat-icon>
+                                {{'actor-detail.other_wins'|translate}}: {{awards.awardsSummary.otherWinsCount}}
+                            </div>
+                        </div>
+                        <div class="awards-holder" *ngIf="awards.awardsSummary.otherNominationsCount == 0">
+                            <span class="empty-awards">
+                                {{'actor-detail.empty_awards_holder'|translate}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row more-like-this-holder" *ngIf="knownFor">
+            <h2 class="container-title">{{'actor-detail.known_for'|translate}}</h2>
+            <ng-container *ngFor="let movie of knownFor">
+                <div class="col-sm-12 col-md-6 col-lg-4 mlt-movie-details" *ngIf="movie.title.image">
+                    <a  *ngIf="movie.title.titleType == 'tvSeries'" class="poster-holder" routerLink="/shows/{{movie.title.id}}">
+                        <img [src]="movie.title.image?.url"/>
+                    </a>
+                    
+                    <a *ngIf="movie.title.titleType != 'tvSeries'" class="poster-holder" routerLink="/movies/{{movie.title.id}}">
+                        <img [src]="movie.title.image?.url"/>
+                    </a>
+
+                    <a  *ngIf="movie.title.titleType == 'tvSeries'" routerLink="/shows/{{movie.title.id}}">
+                        <h2>
+                            <span>{{movie.title.title}}</span>
+                        </h2>
+                    </a>
+                    <a *ngIf="movie.title.titleType == 'movie'" routerLink="/movies/{{movie.title.id}}">
+                        <h2>
+                            <span>{{movie.title.title}}</span>
+                        </h2>
+                    </a>
+
+                    <h4>
+                        <span>({{movie.title.year}}) / 
+                            <mat-icon title="{{'movie-detail.rating'|translate}}" *ngIf="movie.imdbRating >= 8">
+                                star
+                            </mat-icon>
+                            <mat-icon title="{{'movie-detail.rating'|translate}}" *ngIf="movie.imdbRating > 4.5 && movie.imdbRating < 8">
+                                star_half
+                            </mat-icon>
+                            <mat-icon title="{{'movie-detail.rating'|translate}}" *ngIf="movie.imdbRating <= 4.5">star_border</mat-icon>
+                            <span>{{movie.imdbRating}}</span>
+                        </span>
+                    </h4>
+                    <h4 *ngIf="movie.summary.characters">
+                        <span>{{'actor-detail.as'|translate}}: {{movie.summary.characters[0]}}</span>
+                    </h4>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>

@@ -5,14 +5,12 @@
 <div class="shows">
     <ng-container *ngFor="let show of shows">
         <li>
-            <a class="poster-holder" routerLink="/show/{{show.id}}">
+            <a class="poster-holder" routerLink="/shows/{{show.id}}">
                 <img [src]="show.image.url"/>
             </a>
-            <a routerLink="/show/{{show.id}}">
+            <a routerLink="/shows/{{show.id}}">
                 <h2>
-                    <span>
-                        {{show.title}}
-                    </span>
+                    <span>{{show.title}}</span>
                 </h2>
             </a>
             <h4>
@@ -22,7 +20,7 @@
                 </span>
             </h4>
             <div class="casting-holder">
-                Starring: {{show.credits|symbolSeparating: ', '}}
+                {{'title.starring' | translate}}: {{show.credits|symbolSeparating: ', '}}
             </div>
         </li>
     </ng-container>

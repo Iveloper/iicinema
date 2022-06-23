@@ -5,10 +5,10 @@
 <div class="actors">
     <ng-container *ngFor="let actor of actors">
         <li>
-            <a class="poster-holder" routerLink="/actor/{{actor.id}}">
+            <a class="poster-holder" routerLink="/actors/{{actor.id}}">
                 <img [src]="actor.image.url"/>
             </a>
-            <a routerLink="/actor/{{actor.id}}">
+            <a routerLink="/actors/{{actor.id}}">
                 <h2>
                     <span>
                         {{actor.name}}
@@ -17,15 +17,15 @@
             </a>
             
             <div class="casting-holder">
-                Known for: 
+                {{'title.known_for'|translate}}:
                 <ng-container *ngFor="let starred of actor.knownFor; let last = last">
                     <div class="actor-known-for-holder" *ngIf="starred.titleType == 'tvSeries'">
-                        <a routerLink="/show/{{starred.id}}">
+                        <a routerLink="/shows/{{starred.id}}">
                             {{starred.title}}<span *ngIf="!last">, </span>
                         </a>
                     </div>
                     <div class="actor-known-for-holder" *ngIf="starred.titleType == 'movie'">
-                        <a routerLink="/movie/{{starred.id}}">
+                        <a routerLink="/movies/{{starred.id}}">
                             {{starred.title}}<span *ngIf="!last">, </span>
                         </a>
                     </div>

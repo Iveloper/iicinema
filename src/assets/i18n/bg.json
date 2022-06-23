@@ -1,0 +1,86 @@
+{
+    "main": {
+        "search_bar_hint": "Минимум 3 символа",
+        "search_bar_placeholder": "Търсете заглавия..."
+    },
+    "landing": {
+        "explore": "Разгледай повече",
+        "movies": "Филми",
+        "tv_shows": "Сериали",
+        "actors": "Актьори"
+    },
+    "title": {
+        "starring": "Участват",
+        "known_for": "Участва в"
+    },
+    "movie-detail": {
+        "duration": "Времетраене",
+        "rating": "Рейтинг",
+        "release_year": "Година на премиерата",
+        "genres": "Жанрове",
+        "author": "Автор",
+        "ranking_place": "Ранкинг място",
+        "total_voters": "Общо гласували",
+        "review_helpful": "Полезно ревю",
+        "review_not_helpful": "Безполезно ревю",
+        "spoiler": "СПОЙЛЕР!",
+        "spoiler_free": "Мнение без спойлери!",
+        "user_reviews": "Мнения на потребители",
+        "as": "Като: ",
+        "top_billed_cast": "Главни роли",
+        "more_like_this": "Виж още"
+    },
+    "show-detail": {
+        "episodes": "епизода",
+        "episodes_num": "Брой епизоди",
+        "duration": "Времетраене",
+        "rating": "Рейтинг",
+        "release_year": "Години на излъчване",
+        "genres": "Жанрове",
+        "author": "Автор",
+        "ranking_place": "Ранкинг място",
+        "total_voters": "Общо гласували",
+        "review_helpful": "Полезно ревю",
+        "review_not_helpful": "Безполезно ревю",
+        "spoiler": "СПОЙЛЕР!",
+        "spoiler_free": "Мнение без спойлери!",
+        "user_reviews": "Мнения на потребители",
+        "as": "Като: ",
+        "top_billed_cast": "Главни роли",
+        "more_like_this": "Виж още"
+    },
+    "actor-detail": {
+        "birth_date": "Рожден ден",
+        "birth_place": "Място на раждане",
+        "height": "Височина",
+        "sm": "см.",
+        "gender": "Пол:",
+        "male": "Мъж",
+        "female": "Жена",
+        "biography": "Биография",
+        "awards": "Награди",
+        "author": "Автор",
+        "other_nominations": "Други номинации",
+        "other_wins": "Други награди",
+        "nominated": "Номиниран",
+        "won": "Носител",
+        "time": "Пъти",
+        "empty_awards_holder": "Няма спечелени награди.",
+        "known_for": "Известни роли",
+        "as": "като"
+    },
+    "messages": {
+        "messages": "Известия",
+        "clear": "Изчисти"
+    },
+    "filters": {
+        "order_by": "Подреди по",
+        "name": "Име",
+        "year": "Година на премиерата",
+        "length": "Времетраене"
+    },
+    "footer": {
+        "info": "Дизайн и разработка: Ивелин Иванов",
+        "rapid_api": "Данни: rapidapi.com"
+    }
+}

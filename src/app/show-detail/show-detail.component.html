@@ -1,3 +1,195 @@
-<div *ngFor='let cast of castInfo | async'>
-    {{cast.q}}
+<div class="loading-spinner">
+    <mat-spinner *ngIf="loading$ | async"></mat-spinner>
+</div>
+<div class="show-details-holder" 
+    infinite-scroll 
+    [infiniteScrollDistance]="2"
+    [infiniteScrollThrottle]="50"
+    [fromRoot]="true" 
+    (scrolled)="lazyLoadScroll()" *ngIf="show">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-12 col-lg-3">
+                <div class="poster-holder">
+                    <img [src]="show.image.url"/>
+                </div>
+                <h2> {{show.title}} </h2>
+            </div>
+            <div class="col-12 col-md-12 col-lg-4 d-grid">
+                <div class="show-basic-info-holder">
+                    <mat-toolbar>
+                        <mat-toolbar-row class="d-flex justify-content-center">
+                            <div *ngIf="show.numberOfEpisodes">
+                                <mat-icon title="{{'show-detail.episodes_num'|translate}}">ondemand_video</mat-icon>
+                                <span>{{show.numberOfEpisodes}}</span>
+                            </div>
+                        </mat-toolbar-row>
+                        <mat-toolbar-row class="d-flex justify-content-center">
+                            <div *ngIf="show.runningTimeInMinutes">
+                                <mat-icon title="{{'show-detail.duration'|translate}}">access_time</mat-icon>
+                                <span>{{show.runningTimeInMinutes | minutesToHours}}</span>
+                            </div>
+                        </mat-toolbar-row>
+                        <mat-toolbar-row class="d-flex justify-content-center">
+                            <div *ngIf="showRatings.rating">
+                                <mat-icon title="{{'show-detail.rating'|translate}}" *ngIf="showRatings.rating >= 8">
+                                    star
+                                </mat-icon>
+                                <mat-icon title="{{'show-detail.rating'|translate}}" *ngIf="showRatings.rating > 4.5 && showRatings.rating < 8">
+                                    star_half
+                                </mat-icon>
+                                <mat-icon title="{{'show-detail.rating'|translate}}" *ngIf="showRatings.rating <= 4.5">star_border</mat-icon>
+                                <span>{{showRatings.rating}}/10</span>
+                            </div>
+                        </mat-toolbar-row>
+                        <mat-toolbar-row class="d-flex justify-content-center">
+                            <div *ngIf="show.seriesStartYear">
+                                <mat-icon title="{{'show-detail.release_year'|translate}}">date_range</mat-icon>
+                                <span>{{show.seriesStartYear}} - {{show.seriesEndYear}}</span>
+                            </div>
+                        </mat-toolbar-row>
+                        <mat-toolbar-row class="d-flex justify-content-center">
+                            <div *ngIf="showGenres">
+                                <mat-icon title="{{'show-detail.genres'|translate}}"> local_shows</mat-icon>
+                                <span>{{showGenres|symbolSeparating: ', '}}</span>
+                            </div>
+                        </mat-toolbar-row>
+                    </mat-toolbar>
+                </div>
+                <div class="show-description-chart-holder">
+                    <div class="toggle-icons">
+                        <mat-icon
+                        title = "{{'show-detail.show_plot'|translate}}"
+                        (click)="toggleDescription = false"  
+                        [class.clickedIcon] = "!toggleDescription">
+                            description
+                        </mat-icon>
+                        <mat-icon
+                        title = "{{'show-detail.rating_summary'|translate}}"
+                        (click) = "toggleDescription = true"  
+                        [class.clickedIcon] = "toggleDescription"> 
+                            bar_chart
+                        </mat-icon>
+                    </div>
+                    <div class="plot-container" *ngIf="!toggleDescription">
+                        <p> {{showPlots.plots[0].text}} </p>
+                        <p *ngIf="showPlots.plots[0].author"> 
+                            <mat-icon title="{{'show-detail.author'|translate}}">account_circle</mat-icon>
+                            <span> {{showPlots.plots[0].author}} </span> 
+                        </p>
+                    </div>
+                    <div class="chart-container" *ngIf="toggleDescription">
+                        <div>
+                            <mat-icon> show_chart</mat-icon>
+                            {{'show-detail.ranking_place'|translate}}: {{showRatings.otherRanks[0].rank}}
+                        </div>
+                        <div>
+                            <mat-icon>people_outline</mat-icon>
+                            {{'show-detail.total_voters'|translate}}: {{showRatings.ratingCount|spaceBigIntegers}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-5">
+                <div class="show-user-reviews-holder">
+                    <h2 class="text-center">{{'show-detail.user_reviews'|translate}}</h2>
+                    <ng-container *ngFor="let review of reviewSource">
+                        <div class="row d-flex align-items-center w-100 m-auto review-row">
+                            <div class="col-2 text-center p-0">
+                                <mat-icon title="{{'show-detail.author'|translate}}">account_circle</mat-icon>
+                                <div class="user-nickname-holder">
+                                    {{review.author.displayName}}
+                                </div>
+                            </div>
+                            <div class="col-10 title-date-container">
+                                <div class="review-title-holder">
+                                    {{review.reviewTitle}}
+                                </div>
+                                <span class="review-date-holder">
+                                    <mat-icon>calendar_today</mat-icon>
+                                    {{review.submissionDate}} | 
+                                    <span *ngIf="review.spoiler">
+                                        {{'show-detail.spoiler'|translate}}
+                                    </span>
+                                    <span *ngIf="!review.spoiler">
+                                        {{'show-detail.spoiler_free'|translate}}
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="col-2">
+                                <div class="review-rating-holder">
+                                    <span class="review-votes">
+                                        {{review.interestingVotes.up}} <mat-icon title = "{{'show-detail.review_helpful'|translate}}">arrow_upward</mat-icon>
+                                    </span>
+                                    <span class="review-votes">
+                                        <mat-icon title = "{{'show-detail.review_not_helpful'|translate}}">arrow_downward</mat-icon> {{review.interestingVotes.down}}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-10">
+                                <p class="review-text-holder">
+                                    {{review.reviewText}}
+                                </p>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <mat-paginator #paginator
+                        [length]="userReviews?.length"
+                        [pageSize]="pageSize"
+                        [pageIndex]="currentPage"
+                        [showFirstLastButtons]="true"
+                        (page)="handlePage($event)">
+                    </mat-paginator>
+                </div>
+            </div>
+        </div>
+        <div class="row show-credits-holder" *ngIf="showCredits">
+            <h2>{{'show-detail.top_billed_cast'|translate}}</h2>
+            <ng-container *ngFor="let credit of showCredits|slice:0:6">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+                    <div class="cast-info-holder d-flex align-items-center">
+                        <div class="cast-image-holder">
+                            <a routerLink="/actors/{{credit.id}}">
+                                <img class="actor-icon" src="{{credit.image.url}}">
+                            </a>
+                        </div>
+                        <div class="cast-role-holder d-grid">
+                            <a class="actor-name" routerLink="/actors/{{credit.id}}">
+                                <span>
+                                    {{credit.name}}
+                                </span>
+                            </a>
+                            <span class="role-name">
+                                {{'show-detail.as'|translate}} {{credit.characters[0]}}
+                            </span>
+                            <span class="role-name">
+                                {{credit.episodeCount}} {{'show-detail.episodes'|translate}} 
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+        <div class="loading-spinner">
+            <mat-spinner *ngIf="loadingMoreLikeThis$ | async"></mat-spinner>
+        </div>
+        <div class="row more-like-this-holder" *ngIf="moreLikeThisDetail">
+            <h2 class="container-title">{{'show-detail.more_like_this'|translate}}</h2>
+            <ng-container *ngFor="let show of moreLikeThisDetail">
+                <div class="col-sm-12 col-md-6 col-lg-4 mlt-show-details" *ngIf="show.image">
+                    <a class="poster-holder" routerLink="/shows/{{show.id}}">
+                        <img [src]="show.image?.url"/>
+                    </a>
+                    <a routerLink="/shows/{{show.id}}">
+                        <h2>
+                            <span>{{show.title}}</span>
+                        </h2>
+                    </a>
+                    <h4>
+                        <span>({{show.seriesStartYear}} - {{show.seriesEndYear}}) / {{show.runningTimeInMinutes|minutesToHours}}</span>
+                    </h4>
+                </div>
+            </ng-container>
+        </div>
+    </div>
 </div>

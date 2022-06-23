@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
 import { Observable, of } from 'rxjs';
 import { MessageService } from 'src/app/message.service';
 
@@ -9,7 +8,7 @@ const httpOptions = {
   method: 'GET',
   headers: new HttpHeaders({ 
   'X-RapidAPI-Host': 'online-movie-database.p.rapidapi.com' ,
-  'X-RapidAPI-Key': 'b2650efbb1msh00dd827cee6bdaep1dcbfdjsn7e6cf628cffc'
+  'X-RapidAPI-Key': '2699f5c2bemsh20923a10f7b86e8p1fa75ajsnbf2ce7219f22'
   })
 };
 

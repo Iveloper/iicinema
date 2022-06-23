@@ -1,0 +1,86 @@
+{
+    "main": {
+        "search_bar_hint": "3 symbols minimum",
+        "search_bar_placeholder": "Search title..."
+    },
+    "landing": {
+        "explore": "Explore more",
+        "movies": "Movies",
+        "tv_shows": "TV Shows",
+        "actors": "Actors"
+    },
+    "title": {
+        "starring": "Starring",
+        "known_for": "Known for"
+    },
+    "movie-detail": {
+        "duration": "Duration",
+        "rating": "Rating",
+        "release_year": "Release year",
+        "genres": "Genres",
+        "author": "Author",
+        "ranking_place": "Ranking place",
+        "total_voters": "Voters count",
+        "review_helpful": "Helpful review",
+        "review_not_helpful": "Unhelpful review",
+        "spoiler": "SPOILER!",
+        "spoiler_free": "NO Spoilers!",
+        "user_reviews": "User reviews",
+        "as": "As: ",
+        "top_billed_cast": "Top billed cast",
+        "more_like_this": "More like this"
+    },
+    "show-detail": {
+        "episodes": "episodes",
+        "episodes_num": "Number of episodes",
+        "duration": "Duration",
+        "rating": "Rating",
+        "release_year": "Years on air",
+        "genres": "Genres",
+        "author": "Author",
+        "ranking_place": "Ranking place",
+        "total_voters": "Voters count",
+        "review_helpful": "Helpful review",
+        "review_not_helpful": "Unhelpful review",
+        "spoiler": "SPOILER!",
+        "spoiler_free": "NO Spoilers!",
+        "user_reviews": "User reviews",
+        "as": "As: ",
+        "top_billed_cast": "Top billed cast",
+        "more_like_this": "More like this"
+    },
+    "actor-detail": {
+        "birth_date": "Birth date",
+        "birth_place": "Birth place",
+        "height": "Height",
+        "sm": "centimeters",
+        "gender": "Gender:",
+        "male": "Male",
+        "female": "Female",
+        "biography": "Biography",
+        "awards": "Awards",
+        "author": "Author",
+        "other_nominations": "Other nominations",
+        "other_wins": "Other awards won",
+        "nominated": "Nominated",
+        "won": "Winner",
+        "time": "Time",
+        "empty_awards_holder": "No awards won.",
+        "known_for": "Known for",
+        "as": "as"
+    },
+    "messages": {
+        "messages": "Notifications",
+        "clear": "Clear"
+    },
+    "filters": {
+        "order_by": "Order by",
+        "name": "Name",
+        "year": "Year",
+        "length": "Duration"
+    },
+    "footer": {
+        "info": "Design and development: Ivelin Ivanov",
+        "rapid_api": "Data: rapidapi.com"
+    }
+}

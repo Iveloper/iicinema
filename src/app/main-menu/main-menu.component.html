@@ -13,3 +13,16 @@
         </div>
     </ng-container>
 </mat-menu>
+
+<div class="language-control-container">
+    <mat-form-field appearance="fill">
+        <mat-select name="lang" [(value)]="chosenLanguage" (selectionChange)="changeLanguage($event.value)">
+            <mat-select-trigger>
+                <img class="language-icon" src="assets/images/{{chosenLanguage}}.jpg">
+             </mat-select-trigger>
+            <mat-option *ngFor="let lang of languageList" [value]="lang">
+                <img class="language-icon" src="assets/images/{{lang}}.jpg"/>
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>

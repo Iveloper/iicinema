@@ -7,6 +7,7 @@ export interface Rating {
     ratingsHistograms: any;
     title: string;
     titleType: string;
-    topRank: number;
+    topRank?: number;
+    otherRanks: any[];
     year: number;
 }

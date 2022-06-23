@@ -1,8 +1,6 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
-
-
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MoviesComponent } from './movies/movies.component';
@@ -29,7 +27,13 @@ import { FormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FiltersComponent } from './filters/filters.component';
 import { LandingComponent } from './landing/landing.component';
-import { SpaceBigIntegersPipe } from './pipes/space-big-integers.pipe'
+import { SpaceBigIntegersPipe } from './pipes/space-big-integers.pipe';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { MatSelectModule } from '@angular/material/select';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { FooterComponent } from './footer/footer.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,12 +52,20 @@ import { SpaceBigIntegersPipe } from './pipes/space-big-integers.pipe'
     SearchBarComponent,
     FiltersComponent,
     LandingComponent,
-    SpaceBigIntegersPipe
+    SpaceBigIntegersPipe,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+      }
+    }),
     BrowserAnimationsModule,
     MatSliderModule,
     MatIconModule,
@@ -61,11 +73,19 @@ import { SpaceBigIntegersPipe } from './pipes/space-big-integers.pipe'
     MatToolbarModule,
     MatInputModule,
     MatFormFieldModule,
+    MatSelectModule,
     FormsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatPaginatorModule,
+    InfiniteScrollModule
   ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+  return new TranslateHttpLoader(http);
+}

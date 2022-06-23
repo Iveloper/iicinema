@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PRIMARY_OUTLET, Router, UrlSegment, UrlSegmentGroup, UrlTree } from '@angular/router';
 import { GeneralService } from 'src/app/config/general.service';
 
 @Component({
@@ -13,7 +14,8 @@ export class SearchBarComponent implements OnInit {
   public currentRoute: string = '';
 
   constructor(
-    private generalService: GeneralService
+    private generalService: GeneralService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -39,7 +41,15 @@ export class SearchBarComponent implements OnInit {
   }
 
   getTitlesBySearch(title: string) {
+    const tree: UrlTree = this.router.parseUrl(this.router.url);
+    const group: UrlSegmentGroup = tree.root.children[PRIMARY_OUTLET];
+    const mainSegment: UrlSegment[] = group?.segments;
+
     this.generalService.title$.next(title);
+
+    if (mainSegment) {
+      this.router.navigate([`/${mainSegment[0].path}`])
+    }
   }
 
 }

@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Oswald&display=swap");
-@mainFont: 'Oswald', sans-serif;
+@mainFont: "Oswald", sans-serif;
 @primaryWhite: #fff;
 @secondaryWhite: rgb(167, 167, 167);
 @primaryDark: #272727;
@@ -19,54 +19,76 @@ h1 {
   font-family: @mainFont !important;
   .h1Size() !important;
 }
-h2, h3 {
+h2,
+h3 {
   color: @primaryWhite;
   font-family: @mainFont;
   font-weight: lighter;
 }
 body {
-    background: @secondaryDark !important;
-    margin: 2em;
-    .main-menu {
-      width: 180px;
-      @media (max-width: @sizes[tablet]) {
-        width: auto;
+  min-height:100vh;
+  margin:0;
+  position:relative;
+  background: @secondaryDark !important;
+  margin: 2em;
+  .main-menu {
+    width: 180px;
+    .mat-menu-trigger {
+      vertical-align: sub;
+    }
+    @media (max-width: @sizes[tablet]) {
+      width: auto;
+    }
+  }
+  .loading-spinner {
+    display: flex;
+    justify-content: center;
+    .mat-spinner {
+      margin: 10px;
+      circle {
+        stroke: @primaryWhite;
+        stroke-width: 5% !important;
+        animation-timing-function: cubic-bezier(0.15, 0, 0.15, 1) !important;
       }
     }
-    .loading-spinner {
-      display: flex;
-      justify-content: center;
-      .mat-spinner {
-        margin: 10px;
-        circle {
-          stroke: @primaryWhite;
-          stroke-width: 5% !important;
-          animation-timing-function: cubic-bezier(0.15, 0, 0.15, 1) !important;
-        }
-      }
-    }
-    .filter-holder {
-      padding: 10px;
-      .mat-toolbar {
+  }
+  .filter-holder {
+    padding: 10px;
+    .mat-toolbar {
+      border-radius: @borderRadius;
+      .mat-toolbar-row {
+        background-color: @primaryWhite;
         border-radius: @borderRadius;
-        .mat-toolbar-row {
+        display: flex;
+        height: 4rem;
+        @media (max-width: @sizes[tablet]) {
+          display: table;
+        }
+        button {
           display: flex;
-          button {
-            display: flex;
-            align-items: center;
-            padding: 0.5rem;
-            background-color: transparent;
-            &:hover {
-              background-color: @secondaryDark;
-            }
-            div {
-              display: initial;
-              margin-top: 0.5rem;
-            }
+          align-items: center;
+          padding: 0.5rem;
+          background-color: transparent;
+          @media (max-width: @sizes[tablet]) {
+            padding: initial;
+            margin-top: unset;
+            margin-bottom: unset;
+          }
+          &:hover {
+            background-color: @secondaryDark;
+          }
+          div {
+            display: initial;
+            margin-top: 0.5rem;
           }
         }
       }
     }
+  }
+  .language-icon {
+    max-width: 30px;
+    border-radius: 50%;
+  }
 }
 body,
 input[type="text"],
@@ -105,26 +127,35 @@ button {
   }
 }
 .material-icons {
-  font-family: 'Material Icons' !important; 
+  font-family: "Material Icons" !important;
 }
 .main-toolbar {
   display: flex !important;
   justify-content: space-around;
-  height: 5.5rem !important;
+  height: 7rem !important;
   background-color: @primaryDark !important;
+  border-bottom: 1px solid @primaryWhite;
+  ::ng-deep .mat-toolbar-row {
+    justify-content: inherit;
+  }
+  .menu-language-row {
+    justify-content: inherit;
+  }
+  .search-bar-row {
+    justify-content: center;
+  }
   button {
     background-color: @primaryDark;
     color: @primaryWhite;
-    .mat-icon {
-      padding: 0.8rem;
-    }
   }
   .app-title {
     color: @primaryWhite;
     font-size: 40px;
   }
 }
-.movies, .shows, .actors {
+.movies,
+.shows,
+.actors {
   a {
     text-decoration: none;
   }
@@ -132,9 +163,11 @@ button {
     max-height: 450px;
     min-height: 450px;
     img {
-      height: 450px
-
+      height: 450px;
     }
+  }
+  h4 {
+    font-size: 18px;
   }
   .casting-holder {
     padding: 0 10px 0 10px;
@@ -145,5 +178,33 @@ button {
   font-family: @mainFont;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html{
+  height: 100%;
+}
+body {
+  min-height: 100vh;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/*Language Changer Dropdown*/
+::ng-deep .mat-select-panel {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  width: auto;
+  background: transparent !important;
+  box-shadow: none !important;
+  ::ng-deep .mat-option {
+    width: 4rem;
+    height: 2.5rem;
+    &:hover {
+      background: transparent !important;
+    }
+  }
+  img {
+    border-radius: 50%;
+  }
+}
+::ng-deep .mat-active {
+  background: transparent !important;
+}

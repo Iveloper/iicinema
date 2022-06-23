@@ -1,7 +1,12 @@
 <mat-toolbar class="main-toolbar">
-    <app-main-menu class="main-menu"></app-main-menu>
-    <span class="app-title">{{ title }}</span>
-    <app-search-bar></app-search-bar>
+    <mat-toolbar-row  class="menu-language-row">
+        <app-main-menu class="main-menu"></app-main-menu>
+        <span class="app-title">{{ title }}</span>
+    </mat-toolbar-row>
+    <mat-toolbar-row class="search-bar-row">
+        <app-search-bar></app-search-bar>
+    </mat-toolbar-row>
 </mat-toolbar>
 <router-outlet></router-outlet>
 <app-messages></app-messages>
+<app-footer [projectName]="title"></app-footer>

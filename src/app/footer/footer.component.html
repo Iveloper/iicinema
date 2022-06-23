@@ -1,0 +1,32 @@
+<div class="footer-holder">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-sm-12 col-md-4 footer-column">
+                <img class="angular-icon" src="assets/images/angular.svg">
+                <div class="project-title-footer">{{projectName}}</div>
+            </div>
+            <div class="col-sm-12 col-md-4 footer-column">
+                <mat-list class="d-grid footer-list">
+                    <ng-container *ngFor="let route of currentRoutes">
+                        <a *ngIf="route.data?.['show']" routerLink="/{{route.path}}">
+                            <mat-list-item class="footer-list-item">
+                                {{route.data?.['title']}}
+                            </mat-list-item>
+                        </a>
+                    </ng-container>
+                </mat-list>
+            </div>
+            <div class="col-sm-12 col-md-4 footer-column">
+                <a href="https://github.com/Iveloper">
+                    <img class="github-icon" src="assets/images/github.png">
+                </a>
+                <p class="project-info d-grid">
+                    <span>{{'footer.info'|translate}}</span>
+                    <a href="https://rapidapi.com">
+                        <span>{{'footer.rapid_api'|translate}}</span>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

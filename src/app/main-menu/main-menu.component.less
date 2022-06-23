@@ -1,5 +1,24 @@
-app-main-menu {
+.main-menu {
     button {
         padding: 0.5rem;
+    }
+}
+.language-control-container {
+    display: initial;
+    ::ng-deep .mat-form-field {
+        width: 100px;
+        ::ng-deep .mat-form-field-flex {
+            background: transparent;
+            ::ng-deep .mat-select-arrow-wrapper {
+                display: contents;
+                color: #fff;
+            }
+            ::ng-deep .mat-select-value {
+                width: 2rem;
+            }
+        }
+        ::ng-deep .mat-form-field-underline {
+            display: none;
+        }
     }
 }

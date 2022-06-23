@@ -5,23 +5,26 @@
         color: @primaryWhite !important;
     }
     ::ng-deep .mat-form-field-wrapper {
-        margin-top: 0.5rem;
+        margin-top: -2rem;
+        @media (max-width: @sizes[tablet]) {
+            display: initial;
+        }
     }
     ::ng-deep .mat-form-field-infix {
         button {
             background: none;
             color: inherit;
             border: none;
-            padding: 0;
+            padding: 0 !important;
             cursor: pointer;
             outline: inherit;
-            margin: -1.5rem;
+            margin: -1.5rem !important;
             border: none;
-            height: max-content;
-            width: unset;
+            height: max-content !important;
+            width: unset !important;
             ::ng-deep .mat-icon {
-                font-size: 120%;
-                padding: unset;
+                font-size: 120% !important;
+                padding: unset !important;
             }
             &:disabled {
                 color: @secondaryWhite;
@@ -30,14 +33,21 @@
         }
         input {
             color: @primaryWhite;
-            height: 1.6rem;
+            height: 1.6rem !important;
         }
     }
     .remove-input-value {
-        margin: -1.5rem;
-        display: inline;
+        margin: -1.5rem !important;
+        display: inline !important;
         .mat-icon {
             cursor: pointer;
+        }
+    }
+
+    ::ng-deep .mat-hint {
+        margin-top: -2px;
+        @media (max-width: @sizes[tablet]) {
+            display: none;
         }
     }
     

@@ -8,7 +8,7 @@
         align-items: center;
         padding: 1rem;
         color: @primaryWhite;
-        font-size: 40px;
+        font-size: 30px;
         .hover-text {
             display: none;
             font-size: 22px;
@@ -25,6 +25,9 @@
     .active {
         .hover-text {
             display: initial;
+            @media (max-width: @sizes[tablet]) {
+                display: flex !important;
+            }
             &:hover {
                 .mat-icon {
                     color:#fff;

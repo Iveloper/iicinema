@@ -1,20 +1,15 @@
 @import '/src/styles.less';
+@marginTop: 15px;
 .movie-details-holder {
     .poster-holder {
-        width: 100%;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        list-style: none;
-        padding: 10px;
-        margin-top: 15px;
-        border-radius: @borderRadius;
-        text-align: center;
-        background: @primaryDark;
-        border: 0.5px solid @primaryWhite;
+        margin-top: @marginTop;
         img {
-            max-height: 500px;
-            max-width: 500px;
+            margin: 0 auto;
+            border-radius: @borderRadius;
+            max-height: 450px;
+            max-width: 335px;
         }
     }
     .movie-basic-info-holder{
@@ -22,9 +17,10 @@
             border-radius: @borderRadius;
             background-color: @primaryDark;
             color: @primaryWhite;
-            margin-top: 15px;
+            margin-top: @marginTop;
             .mat-toolbar-row {
-                justify-content: space-evenly;
+                padding: 20px;
+                justify-content: space-between;
                 div {
                     display: flex;
                     align-items: center;
@@ -33,7 +29,7 @@
         }
     }
     .movie-description-chart-holder {
-        margin-top: 20px;
+        margin-top: @marginTop;
         padding: 15px;
         border-radius: @borderRadius;
         background-color: @primaryDark;
@@ -56,6 +52,7 @@
         p {
             display: flex;
             align-items: center;
+            text-align: center;
             padding: 10px;
             font-size: 20px;
             line-height: 30px;
@@ -74,6 +71,127 @@
             }
             .mat-icon {
                 margin-right: 10px;
+            }
+        }
+    }
+    .movie-user-reviews-holder {
+        margin-top: @marginTop;
+        border-radius: @borderRadius;
+        background-color: @primaryDark;
+        color: @primaryWhite;
+        padding: 10px;
+        .review-row {
+            margin-top: 10px !important;
+            border-bottom: 0.5px solid @primaryWhite;
+        }
+        .user-nickname-holder {
+            overflow: hidden;
+            font-size: 13px;
+        }
+        .title-date-container {
+            height: 5rem;
+            .review-title-holder {
+                font-size: 18px;
+            }
+            .review-date-holder {
+                font-size: 12px;
+            }
+        }
+        .review-text-holder {
+            min-height: 140px;
+            max-height: 140px;
+            overflow: hidden;
+        }
+        .review-date-holder {
+            .mat-icon {
+                font-size: 12px;
+                text-align: center;
+            }
+        }
+        .review-rating-holder {
+            .review-votes {
+                display: block;
+                text-align: -webkit-center;
+                .mat-icon {
+                    display: flex;
+                }
+            }
+        }
+        .mat-paginator {
+            margin-top: 10px;
+            border-radius: @borderRadius;
+            ::ng-deep .mat-paginator-page-size, ::ng-deep .mat-paginator-range-label {
+                color: @primaryDark;
+            }
+        }
+    }
+    .movie-credits-holder {
+        h2 {
+            color: @primaryWhite;
+            margin-top: 15px;
+            margin-bottom: unset;
+        }
+        @media (max-width: @sizes[mobile]) {
+            display: block;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        .col-12 {
+            @media (max-width: @sizes[mobile]) {
+                display: inline-block;
+                float: none;
+            }
+        }
+        .cast-role-holder {
+            .actor-name {
+                color: @primaryWhite;
+                text-decoration: none;
+                font-size: 18px;
+                text-align: center;
+                &:hover {
+                    color: @secondaryWhite;
+                }
+            }
+            .role-name {
+                color: @primaryWhite;
+            }
+        }
+        .cast-image-holder {
+            padding: 1rem;
+        }
+        img {
+            border-radius: 50%;
+            max-height: 160px;
+            max-width: 160px;
+            min-height: 160px;
+            min-width: 160px;
+        }
+    }
+    .more-like-this-holder {
+        margin-top: 15px;
+        margin-bottom: 20px;
+        .container-title {
+            color: @primaryWhite;
+            margin-top: 15px;
+            margin-bottom: unset;
+        }
+        .mlt-movie-details {
+            border-radius: @borderRadius;
+            a {
+                text-decoration: none;
+                &:hover {
+                    span {
+                        color: @secondaryWhite;
+                    }
+                }
+            }
+            h2, h4 {
+                text-align: center;
+                margin-bottom: unset;
+                color: @primaryWhite;
+            }
+            h2 {
+                font-size: 24px;
             }
         }
     }
