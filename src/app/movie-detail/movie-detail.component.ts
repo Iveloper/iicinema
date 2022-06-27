@@ -42,6 +42,7 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    console.log(this.movie);
     this.loadMovie();
   }
 
@@ -69,7 +70,6 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
           this.movieCredits = results.credits.cast;
           this.userReviews = results.reviews.reviews;
           this.renderPerPage();
-          console.log(this.movieCredits);
         });
     });
   }

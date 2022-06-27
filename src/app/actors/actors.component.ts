@@ -34,7 +34,6 @@ export class ActorsComponent implements OnInit, OnDestroy {
         ))
       ).subscribe(results => {
         this.actors = results;
-        console.log(this.actors);
       });
     });
   }

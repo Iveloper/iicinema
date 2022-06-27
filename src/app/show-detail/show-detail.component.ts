@@ -58,7 +58,6 @@ export class ShowDetailComponent implements OnInit, OnDestroy {
           this.showRatings = results.ratings;
           this.showPlots = results.plots;
           this.showGenres = results.genres;
-          console.log(this.showRatings);
         });
     });
   }
@@ -70,7 +69,6 @@ export class ShowDetailComponent implements OnInit, OnDestroy {
         takeUntil(this._destroy$)
         ).subscribe(results => {
           this.showCredits = results.credits.cast;
-          console.log(this.showCredits);
           this.userReviews = results.reviews.reviews;
           this.renderPerPage();
         });

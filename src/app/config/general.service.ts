@@ -8,7 +8,7 @@ const httpOptions = {
     method: 'GET',
     headers: new HttpHeaders({
         'X-RapidAPI-Host': 'online-movie-database.p.rapidapi.com',
-        'X-RapidAPI-Key': '2699f5c2bemsh20923a10f7b86e8p1fa75ajsnbf2ce7219f22'
+        'X-RapidAPI-Key': '2b843977d5msh20abdfa70100555p1d2832jsn02f216b2fa61'
     })
 };
 

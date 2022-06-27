@@ -1,9 +1,13 @@
-<div class="message-holder" *ngIf="messageService.messages.length">
-    <h2>{{'messages.messages'|translate}}</h2>
-    <div class="message" [class.danger]="messageService.isDanger" *ngFor='let message of messageService.messages'> 
-        {{message}} 
-    </div>
-    <button type="button" class="clear" (click)="messageService.clear()">
-        {{'messages.clear'|translate}}
-    </button>
-</div>
+<main class="message-holder container" *ngIf="messageService.messages.length">
+    <section class="row">
+        <article>
+            <h2>{{'messages.messages'|translate}}</h2>
+            <p class="message" [class.danger]="messageService.isDanger" *ngFor='let message of messageService.messages'> 
+                {{message}} 
+            </p>
+        </article>
+        <button type="button" class="clear" (click)="messageService.clear()">
+            {{'messages.clear'|translate}}
+        </button>
+    </section>
+</main>

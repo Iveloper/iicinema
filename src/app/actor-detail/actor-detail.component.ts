@@ -39,7 +39,6 @@ export class ActorDetailComponent implements OnInit, OnDestroy {
         this.actor = results.bio;
         this.awards = results.awards;
         this.knownFor = results.knownfor;
-        console.log(this.actor, this.knownFor, this.awards);
       })    
     });
   }

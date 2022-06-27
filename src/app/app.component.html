@@ -7,6 +7,8 @@
         <app-search-bar></app-search-bar>
     </mat-toolbar-row>
 </mat-toolbar>
-<router-outlet></router-outlet>
-<app-messages></app-messages>
+<main>
+    <router-outlet></router-outlet>
+    <app-messages></app-messages>
+</main>
 <app-footer [projectName]="title"></app-footer>
