@@ -1,0 +1,161 @@
+@import '/src/styles.less';
+.profile-container {
+  color: @primaryWhite;
+  display: flex;
+  .left-side-nav {
+    border-right: 1px solid @primaryWhite;
+    .profile-icon {
+      font-size: 48px;
+      width: 100%;
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .user-info {
+      text-align: center;
+      font-size: 18px;
+      border-bottom: 1px solid @primaryWhite;
+      padding: 15px;
+    }
+
+    .navigation {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .mat-nav {
+      display: grid !important;
+      padding: 15px !important;
+      font-size: 22px !important;
+      a {
+        margin-bottom: 30px !important;
+        text-decoration: none;
+        color: @primaryWhite;
+        &:hover {
+          color: @secondaryWhite;
+          cursor: pointer;
+        }
+      }
+      .active {
+        color: @secondaryWhite;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .info-container {
+    flex: 1;
+    .login-container {
+      max-width: 50%;
+      margin: 0 auto;
+      padding: 20px;
+      border-radius: 4px;
+
+      h2 {
+        text-align: center;
+        font-size: 30px;
+      }
+
+      .form-group {
+        margin-bottom: 10px;
+
+        label {
+          display: block;
+        }
+
+        input {
+          width: 100%;
+          padding: 8px;
+          font-size: 16px;
+          border: none;
+          background-color: @primaryWhite;
+          border-radius: 4px;
+          box-sizing: border-box;
+        }
+        .error-message {
+          color:crimson;
+          font-size: 16px;
+        }
+      }
+
+      .register-link {
+        p {
+          color: @primaryWhite
+        }
+        a {
+          color: @secondaryWhite;
+          text-decoration: none;
+          &:hover {
+            color: @primaryWhite;
+            cursor: pointer;
+          }
+        }
+
+      }
+
+      button {
+        display: block;
+          width: 100%;
+          padding: 10px;
+          color: @primaryWhite;
+          border: 1px solid @primaryWhite;
+          border-radius: 4px;
+          cursor: pointer;
+          background-color: transparent;
+      }
+
+      button:disabled {
+        cursor: not-allowed;
+      }
+    }
+    .btn-group {
+      width: 100%;
+      padding: 25px
+    }
+
+    .filter-holder {
+      padding-left: 25px;
+      padding-right: 40px;
+    }
+
+    .actors, .movies, .shows {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      li {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        list-style: none;
+        margin: 10px;
+        padding: 15px;
+        border-radius: 12px;
+        text-align: center;
+        background: @primaryDark;
+        img {
+          max-width: 300px;
+          border-radius: 12px;
+        }
+        h2 {
+          font-size: 1.8em;
+          padding: 15px 10px 0;
+          margin-top: auto;
+        }
+        .actor-known-for-holder {
+          display: initial;
+          a {
+            color: @primaryWhite;
+            &:hover {
+                color: @secondaryWhite;
+            }
+          }
+        }
+      }
+    }
+    .empty-message {
+      text-align: center;
+      font-size: 28px;
+    }
+  }
+}

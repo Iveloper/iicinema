@@ -7,7 +7,6 @@ import { MoviesComponent } from './movies/movies.component';
 import { ShowsComponent } from './shows/shows.component';
 import { NewsComponent } from './news/news.component';
 import { ActorsComponent } from './actors/actors.component';
-import { MessagesComponent } from './messages/messages.component';
 import { SymbolSeparatingPipe } from './pipes/symbol-separating.pipe';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 import { MinutesToHoursPipe } from 'src/app/pipes/minutes-to-hours.pipe';
@@ -16,14 +15,14 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatToolbarModule } from '@angular/material/toolbar'; 
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { ShowDetailComponent } from './show-detail/show-detail.component';
 import { EssentialIdPartPipe } from 'src/app/pipes/essential-id-part.pipe';
 import { ActorDetailComponent } from './actor-detail/actor-detail.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FiltersComponent } from './filters/filters.component';
 import { LandingComponent } from './landing/landing.component';
@@ -34,6 +33,14 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { FooterComponent } from './footer/footer.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { LoginComponent } from './login/login.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { GenresComponent } from './genres/genres.component';
+import { GenreTitlesComponent } from './genre-titles/genre-titles.component';
+import { RegistrationResultDialogComponent } from './registration-result-dialog/registration-result-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ProfileComponent } from './profile/profile.component';
+import { FavoritesDialogComponent } from './favorites-dialog/favorites-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +48,6 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     ShowsComponent,
     NewsComponent,
     ActorsComponent,
-    MessagesComponent,
     SymbolSeparatingPipe,
     MinutesToHoursPipe,
     EssentialIdPartPipe,
@@ -53,7 +59,14 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     FiltersComponent,
     LandingComponent,
     SpaceBigIntegersPipe,
-    FooterComponent
+    FooterComponent,
+    LoginComponent,
+    RegistrationComponent,
+    GenresComponent,
+    GenreTitlesComponent,
+    RegistrationResultDialogComponent,
+    ProfileComponent,
+    FavoritesDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -77,12 +90,18 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     FormsModule,
     MatProgressSpinnerModule,
     MatPaginatorModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    ReactiveFormsModule,
+    MatDialogModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    RegistrationResultDialogComponent,
+    FavoritesDialogComponent
+  ],
 })
 export class AppModule { }
 

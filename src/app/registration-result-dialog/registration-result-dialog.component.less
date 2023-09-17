@@ -1,0 +1,20 @@
+@import '/src/styles.less';
+.mat-dialog-container {
+  padding-left: 50px;
+  padding-right: 50px;
+  .success-message {
+    color: rgb(0, 104, 0);
+    text-align: center;
+  }
+  .error-message {
+    color: rgb(214, 6, 6);
+    text-align: center;
+  }
+  button {
+    margin: 0 auto;
+    &:hover {
+      background-color: transparent !important;
+      color: @primaryDark;
+    }
+  }
+}

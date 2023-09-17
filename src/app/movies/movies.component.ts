@@ -4,6 +4,7 @@ import { Movie } from 'src/app/interfaces/movie';
 import { Principals } from 'src/app/interfaces/principals';
 import { GeneralService } from 'src/app/config/general.service';
 import { MessageService } from 'src/app/message.service';
+import { AuthService } from './../config/auth.service';
 
 @Component({
   selector: 'app-movies',
@@ -15,14 +16,17 @@ export class MoviesComponent implements OnInit, OnDestroy {
   public movies: Movie[] = [];
   private moviesSubscription: Subscription = new Subscription;
   public loading$!: Observable<boolean>;
+  public userId: string | null = '';
 
   constructor(
     private generalService: GeneralService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    public authService: AuthService
   ) { }
 
   ngOnInit(): void {
     this.loadMovies();
+    this.userId = localStorage.getItem('user_id');
   }
 
   loadMovies(movieName: string = 'game') {

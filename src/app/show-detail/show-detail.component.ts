@@ -8,6 +8,7 @@ import { Principals } from 'src/app/interfaces/principals';
 import { Rating } from 'src/app/interfaces/rating';
 import { Review } from 'src/app/interfaces/review';
 import { Show } from 'src/app/interfaces/show';
+import { AuthService } from '../config/auth.service';
 
 @Component({
   selector: 'app-show-detail',
@@ -22,7 +23,7 @@ export class ShowDetailComponent implements OnInit, OnDestroy {
   public showRatings!: Rating;
   public showPlots!: Plot;
   public showGenres: Array<String> = [];
-  public userReviews!: Review[]; 
+  public userReviews!: Review[];
   public reviewSource!: Review[];
   public moreLikeThisId: String[] = [];
   public moreLikeThisDetail!: Show[];
@@ -32,6 +33,7 @@ export class ShowDetailComponent implements OnInit, OnDestroy {
   public loadingMoreLikeThis$!: Observable<boolean>;
   public toggleDescription: boolean = false;
   private _destroy$ = new Subject<boolean>();
+  public userId: string | null = '';
 
   //Paginator config
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -40,13 +42,15 @@ export class ShowDetailComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private generalService: GeneralService
+    private generalService: GeneralService,
+    public authService: AuthService
   ) { }
-  
+
   ngOnInit(): void {
     this.loadShow();
+    this.userId = localStorage.getItem('user_id');
   }
-  
+
   public loadShow() {
     this.generalService.title$.subscribe(() => {
       this.loading$ = this.generalService.getLoading();

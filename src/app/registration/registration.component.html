@@ -1,0 +1,43 @@
+<div class="login-container">
+  <h2>{{'credential.register'|translate}}</h2>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="username">{{'credential.username'|translate}}</label>
+      <input type="text" formControlName="username" id="username">
+      <div *ngIf="registerForm.get('username')?.invalid && (registerForm.get('username')?.dirty || registerForm.get('username')?.touched)" class="error-message">
+        {{'credential.username_required'|translate}}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">{{'credential.email'|translate}}</label>
+      <input type="email" formControlName="email" id="email">
+      <div *ngIf="registerForm.get('email')?.invalid && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched)" class="error-message">
+        {{'credential.email_invalid'|translate}}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">{{'credential.password'|translate}}</label>
+      <input type="password" formControlName="password" id="password">
+      <div *ngIf="registerForm.get('password')?.invalid && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched)" class="error-message">
+        {{'credential.password_required'|translate}}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="confirmPassword">{{'credential.confirm_password'|translate}}</label>
+      <input type="password" formControlName="confirmPassword" id="confirmPassword">
+      <div *ngIf="registerForm.get('confirmPassword')?.invalid && (registerForm.get('confirmPassword')?.dirty || registerForm.get('confirmPassword')?.touched)" class="error-message">
+        {{'credential.confirm_password_required'|translate}}
+      </div>
+      <div *ngIf="registerForm.hasError('passwordMismatch') && registerForm.get('confirmPassword')?.touched" class="error-message">
+        {{'credential.passwords_not_matching'|translate}}
+      </div>
+    </div>
+
+    <div>
+      <button type="submit" [disabled]="registerForm.invalid">{{'credential.register_button'|translate}}</button>
+    </div>
+  </form>
+</div>

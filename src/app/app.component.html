@@ -1,12 +1,21 @@
 <mat-toolbar class="main-toolbar">
     <mat-toolbar-row  class="menu-language-row">
         <app-main-menu class="main-menu"></app-main-menu>
-        <span class="app-title">{{ title }}</span>
+        <span class="app-title">
+          {{ title }}
+          <span class="login-icon">
+            <a *ngIf="!userId" [routerLink]="['/login']">
+              <mat-icon>login</mat-icon>
+            </a>
+            <a *ngIf="userId" [routerLink]="['/profile']">
+              <mat-icon>account_circle</mat-icon>
+            </a>
+          </span>
+        </span>
     </mat-toolbar-row>
     <mat-toolbar-row class="search-bar-row">
         <app-search-bar></app-search-bar>
     </mat-toolbar-row>
 </mat-toolbar>
 <router-outlet></router-outlet>
-<app-messages></app-messages>
 <app-footer [projectName]="title"></app-footer>

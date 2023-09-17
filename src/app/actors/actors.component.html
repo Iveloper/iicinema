@@ -11,11 +11,17 @@
             <a routerLink="/actors/{{actor.id}}">
                 <h2>
                     <span>
-                        {{actor.name}}
+                      {{actor.name}}
                     </span>
                 </h2>
             </a>
-            
+            <div *ngIf="userId" class="favorite-icon-holder" (click)="authService.toggleFavorite('actor', actor.id)">
+              <span>
+                <mat-icon>
+                  {{ authService.isFavorite('actor', actor.id) ? 'favorite' : 'favorite_border' }}
+                </mat-icon>
+              </span>
+            </div>
             <div class="casting-holder">
                 {{'title.known_for'|translate}}:
                 <ng-container *ngFor="let starred of actor.knownFor; let last = last">
@@ -34,4 +40,3 @@
         </li>
     </ng-container>
 </div>
-    

@@ -46,10 +46,7 @@ export class SearchBarComponent implements OnInit {
     const mainSegment: UrlSegment[] = group?.segments;
 
     this.generalService.title$.next(title);
-
-    if (mainSegment) {
-      this.router.navigate([`/${mainSegment[0].path}`])
-    }
+    this.router.navigate(['/']);
   }
 
 }
