@@ -1,3 +1,4 @@
+import { AuthService } from './../config/auth.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { map, Observable, Subscription } from 'rxjs';
 import { GeneralService } from 'src/app/config/general.service';
@@ -13,13 +14,16 @@ export class ActorsComponent implements OnInit, OnDestroy {
   public actors: Actor[] = [];
   private actorsSubscription: Subscription = new Subscription;
   public loading$!: Observable<boolean>;
+  public userId: string | null = '';
 
   constructor(
-    private generalService: GeneralService
+    private generalService: GeneralService,
+    public authService: AuthService
   ) { }
 
   ngOnInit(): void {
     this.loadActors();
+    this.userId = localStorage.getItem('user_id');
   }
 
   loadActors(actorName: string = 'Robert') {

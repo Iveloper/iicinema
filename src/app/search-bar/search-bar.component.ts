@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PRIMARY_OUTLET, Router, UrlSegmentGroup } from '@angular/router';
+import { PRIMARY_OUTLET, Router, UrlSegmentGroup, UrlTree } from '@angular/router';
 import { GeneralService } from 'src/app/config/general.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -33,16 +33,12 @@ export class SearchBarComponent implements OnInit {
     this.isInputPopulated = false;
   }
 
-  getTitlesBySearch() {
-    this.generalService.title$.next(this.searchForm.get('search')?.value);
-    
-    /*Check if current route is a details page. 
-    If so we will redirect to the parent route, 
-    listing items with currently searched query. */
-    const group: UrlSegmentGroup = this.router.parseUrl(this.router.url).root.children[PRIMARY_OUTLET];
-    if (group) {
-      this.router.navigate([`/${group.segments[0].path}`])
-    }
-  }
 
+  getTitlesBySearch(title: string) {
+    const tree: UrlTree = this.router.parseUrl(this.router.url);
+    const group: UrlSegmentGroup = tree.root.children[PRIMARY_OUTLET];
+
+    this.generalService.title$.next(title);
+    this.router.navigate(['/']);
+  }
 }

@@ -1,8 +1,9 @@
-<footer class="footer-holder">
+<div class="footer-holder">
     <div class="container">
         <div class="row text-center">
             <div class="col-sm-12 col-md-4 footer-column">
                 <img class="angular-icon" src="assets/images/angular.svg">
+                <img class="angular-icon" src="assets/images/codeigniter.svg">
                 <div class="project-title-footer">{{projectName}}</div>
             </div>
             <div class="col-sm-12 col-md-4 footer-column">
@@ -10,7 +11,7 @@
                     <ng-container *ngFor="let route of currentRoutes">
                         <a *ngIf="route.data?.['show']" routerLink="/{{route.path}}">
                             <mat-list-item class="footer-list-item">
-                                {{route.data?.['title']}}
+                                {{route.data?.['title']|translate}}
                             </mat-list-item>
                         </a>
                     </ng-container>
@@ -34,4 +35,4 @@
             </div>
         </div>
     </div>
-</footer>
+</div>

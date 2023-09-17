@@ -1,11 +1,11 @@
-<section class="loading-spinner">
+<div class="loading-spinner">
     <mat-spinner *ngIf="loading$ | async"></mat-spinner>
-</section>
-<main class="movie-details-holder" 
-    infinite-scroll 
+</div>
+<div class="movie-details-holder"
+    infinite-scroll
     [infiniteScrollDistance]="2"
     [infiniteScrollThrottle]="50"
-    [fromRoot]="true" 
+    [fromRoot]="true"
     (scrolled)="lazyLoadScroll()" *ngIf="movie">
     <div class="container">
         <div class="row">
@@ -13,7 +13,14 @@
                 <div class="poster-holder">
                     <img [src]="movie.image.url"/>
                 </div>
-                <h2> {{movie.title}} </h2>
+                <h2 class="title-holder"> {{movie.title}} </h2>
+                <div *ngIf="userId" class="favorite-icon-holder" (click)="authService.toggleFavorite('movie', movie.id)">
+                  <span>
+                    <mat-icon>
+                      {{ authService.isFavorite('movie', movie.id) ? 'favorite' : 'favorite_border' }}
+                    </mat-icon>
+                  </span>
+                </div>
             </div>
             <section class="col-12 col-md-12 col-lg-4 d-grid">
                 <div class="movie-basic-info-holder">
@@ -54,22 +61,22 @@
                     <div class="toggle-icons">
                         <mat-icon
                         title = "{{'movie-detail.movie_plot'|translate}}"
-                        (click)="toggleDescription = false"  
+                        (click)="toggleDescription = false"
                         [class.clickedIcon] = "!toggleDescription">
                             description
                         </mat-icon>
                         <mat-icon
                         title = "{{'movie-detail.rating_summary'|translate}}"
-                        (click) = "toggleDescription = true"  
-                        [class.clickedIcon] = "toggleDescription"> 
+                        (click) = "toggleDescription = true"
+                        [class.clickedIcon] = "toggleDescription">
                             bar_chart
                         </mat-icon>
                     </div>
                     <article class="plot-container" *ngIf="!toggleDescription">
                         <p> {{moviePlots.plots[0].text}} </p>
-                        <p *ngIf="moviePlots.plots[0].author"> 
+                        <p *ngIf="moviePlots.plots[0].author">
                             <mat-icon title="{{'movie-detail.author'|translate}}">account_circle</mat-icon>
-                            <span> {{moviePlots.plots[0].author}} </span> 
+                            <span> {{moviePlots.plots[0].author}} </span>
                         </p>
                     </article>
                     <article class="chart-container" *ngIf="toggleDescription">
@@ -101,7 +108,7 @@
                                 </div>
                                 <span class="review-date-holder">
                                     <mat-icon>calendar_today</mat-icon>
-                                    {{review.submissionDate}} | 
+                                    {{review.submissionDate}} |
                                     <span *ngIf="review.spoiler">
                                         {{'movie-detail.spoiler'|translate}}
                                     </span>
@@ -128,7 +135,7 @@
                         </div>
                     </ng-container>
                     <mat-paginator #paginator
-                        [length]="userReviews?.length"
+                        [length]="userReviews.length"
                         [pageSize]="pageSize"
                         [pageIndex]="currentPage"
                         [showFirstLastButtons]="true"
@@ -169,7 +176,7 @@
             <ng-container *ngFor="let movie of moreLikeThisDetail">
                 <div class="col-sm-12 col-md-6 col-lg-4 mlt-movie-details" *ngIf="movie.image">
                     <a class="poster-holder" routerLink="/movies/{{movie.id}}">
-                        <img [src]="movie.image?.url"/>
+                        <img [src]="movie.image.url"/>
                     </a>
                     <a routerLink="/movies/{{movie.id}}">
                         <h2>
@@ -183,4 +190,4 @@
             </ng-container>
         </section>
     </div>
-</main>
+</div>

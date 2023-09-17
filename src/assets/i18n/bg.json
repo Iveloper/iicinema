@@ -82,5 +82,66 @@
     "footer": {
         "info": "Дизайн и разработка: Ивелин Иванов",
         "rapid_api": "Данни: rapidapi.com"
+    },
+    "credential": {
+        "email": "Имейл*",
+        "password": "Парола*",
+        "not_registered_yet": "Още нямаш регистрация?",
+        "click_here": "Натисни тук",
+        "login": "Влез",
+        "register": "Регистрация",
+        "username": "Потр. име*",
+        "email_invalid": "Невалиден имейл",
+        "password_required": "'Парола' е задължително поле",
+        "confirm_password": "Потвърди парола*",
+        "confirm_password_required": "'Потвърди парола' е задължително поле",
+        "passwords_not_matching": "Паролите не са еднакви",
+        "register_button": "Регистрирай се",
+        "edit_user_info": "Промени потр. информация",
+        "update": "Промени"
+    },
+    "profile": {
+      "edit": "Промени",
+      "favorites": "Любими",
+      "log_out": "Излез",
+      "empty_shows_favorites": "Все още нямате любими сериали",
+      "empty_movies_favorites": "Все още нямате любими филми",
+      "empty_actors_favorites": "Все още нямате любими актьори"
+    },
+    "navigation": {
+      "movies": "Филми",
+      "home": "Начало",
+      "tv_shows": "Сериали",
+      "actors": "Актьори",
+      "genres": "Жанрове"
+    },
+    "genre": {
+      "Action": "Екшън",
+      "Adventure": "Приключенски",
+      "Animation": "Анимации",
+      "Biography": "Биографични",
+      "Comedy": "Комедии",
+      "Crime": "Криминални",
+      "Documentary": "Документални",
+      "Drama": "Драма",
+      "Family": "Семейни",
+      "Fantasy": "Фантастика",
+      "Film-Noir": "Филм ноар",
+      "Game-Show": "Игрално шоу",
+      "History": "Исторически",
+      "Horror": "Ужаси",
+      "Music": "Музикални",
+      "Musical": "Мюзикъли",
+      "Mystery": "Мистерии",
+      "News": "Новини",
+      "Reality-TV": "Риалити",
+      "Romance": "Романтични",
+      "Sci-Fi": "Сай Фай",
+      "Short": "Къси",
+      "Sport": "Спортни",
+      "Talk-Show": "Ток шоу",
+      "Thriller": "Трилъри",
+      "War": "Военни",
+      "Western": "Уестърни"
     }
 }

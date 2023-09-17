@@ -1,0 +1,10 @@
+<div class="favorites-dialog">
+  <div *ngIf="data == 'Added to favorites'">
+    <mat-icon class="added">add</mat-icon>
+    <p class="added">{{ data }}</p>
+  </div>
+  <div *ngIf="data == 'Removed from favorites'">
+    <mat-icon class="removed">remove_circle_outline</mat-icon>
+    <p class="removed">{{ data }}</p>
+  </div>
+</div>

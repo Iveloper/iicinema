@@ -7,7 +7,7 @@
             <button mat-menu-item>
                 <a routerLink="/{{route.path}}">
                     <mat-icon>{{route.data?.['icon']}}</mat-icon>
-                    <span>{{route.data?.['title']}}</span>
+                    <span>{{route.data?.['title']|translate}}</span>
                 </a>
             </button>
         </div>

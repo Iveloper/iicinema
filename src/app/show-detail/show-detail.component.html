@@ -1,11 +1,11 @@
-<section class="loading-spinner">
+<div class="loading-spinner">
     <mat-spinner *ngIf="loading$ | async"></mat-spinner>
-</section>
-<main class="show-details-holder" 
-    infinite-scroll 
+</div>
+<div class="show-details-holder"
+    infinite-scroll
     [infiniteScrollDistance]="2"
     [infiniteScrollThrottle]="50"
-    [fromRoot]="true" 
+    [fromRoot]="true"
     (scrolled)="lazyLoadScroll()" *ngIf="show">
     <div class="container">
         <div class="row">
@@ -13,7 +13,14 @@
                 <div class="poster-holder">
                     <img [src]="show.image.url"/>
                 </div>
-                <h2> {{show.title}} </h2>
+                <h2 class="title-holder"> {{show.title}} </h2>
+                <div *ngIf="userId" class="favorite-icon-holder" (click)="authService.toggleFavorite('show', show.id)">
+                  <span>
+                    <mat-icon>
+                      {{ authService.isFavorite('show', show.id) ? 'favorite' : 'favorite_border' }}
+                    </mat-icon>
+                  </span>
+                </div>
             </div>
             <section class="col-12 col-md-12 col-lg-4 d-grid">
                 <div class="show-basic-info-holder">
@@ -60,22 +67,22 @@
                     <div class="toggle-icons">
                         <mat-icon
                         title = "{{'show-detail.show_plot'|translate}}"
-                        (click)="toggleDescription = false"  
+                        (click)="toggleDescription = false"
                         [class.clickedIcon] = "!toggleDescription">
                             description
                         </mat-icon>
                         <mat-icon
                         title = "{{'show-detail.rating_summary'|translate}}"
-                        (click) = "toggleDescription = true"  
-                        [class.clickedIcon] = "toggleDescription"> 
+                        (click) = "toggleDescription = true"
+                        [class.clickedIcon] = "toggleDescription">
                             bar_chart
                         </mat-icon>
                     </div>
                     <div class="plot-container" *ngIf="!toggleDescription">
                         <p> {{showPlots.plots[0].text}} </p>
-                        <p *ngIf="showPlots.plots[0].author"> 
+                        <p *ngIf="showPlots.plots[0].author">
                             <mat-icon title="{{'show-detail.author'|translate}}">account_circle</mat-icon>
-                            <span> {{showPlots.plots[0].author}} </span> 
+                            <span> {{showPlots.plots[0].author}} </span>
                         </p>
                     </div>
                     <div class="chart-container" *ngIf="toggleDescription">
@@ -107,7 +114,7 @@
                                 </div>
                                 <span class="review-date-holder">
                                     <mat-icon>calendar_today</mat-icon>
-                                    {{review.submissionDate}} | 
+                                    {{review.submissionDate}} |
                                     <span *ngIf="review.spoiler">
                                         {{'show-detail.spoiler'|translate}}
                                     </span>
@@ -163,7 +170,7 @@
                                 {{'show-detail.as'|translate}} {{credit.characters[0]}}
                             </span>
                             <span class="role-name">
-                                {{credit.episodeCount}} {{'show-detail.episodes'|translate}} 
+                                {{credit.episodeCount}} {{'show-detail.episodes'|translate}}
                             </span>
                         </div>
                     </div>
@@ -192,4 +199,4 @@
             </ng-container>
         </section>
     </div>
-</main>
+  </div>

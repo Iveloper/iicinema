@@ -1,0 +1,17 @@
+<div class="login-container">
+  <h2>{{'credential.login'|translate}}</h2>
+  <form (ngSubmit)="login()">
+    <div class="form-group">
+      <label for="email">{{'credential.email'|translate}}</label>
+      <input type="email" id="email" name="email" [(ngModel)]="email" required>
+    </div>
+    <div class="form-group">
+      <label for="password">{{'credential.password'|translate}}</label>
+      <input type="password" id="password" name="password" [(ngModel)]="password" required>
+    </div>
+    <div class="register-link">
+      <p>{{'credential.not_registered_yet'|translate}} <a [routerLink]="['/registration']">{{'credential.click_here'|translate}}</a></p>
+    </div>
+    <button type="submit" [disabled]="!email || !password">{{'credential.login'|translate}}</button>
+  </form>
+</div>

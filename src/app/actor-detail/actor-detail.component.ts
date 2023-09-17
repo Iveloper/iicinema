@@ -5,6 +5,7 @@ import { ActorService } from 'src/app/config/actor.service';
 import { Awards } from 'src/app/interfaces/awards';
 import { Bio } from 'src/app/interfaces/bio';
 import { KnownFor } from 'src/app/interfaces/known_for';
+import { AuthService } from '../config/auth.service';
 
 @Component({
   selector: 'app-actor-detail',
@@ -20,14 +21,17 @@ export class ActorDetailComponent implements OnInit, OnDestroy {
   public loading$!: Observable<boolean>;
   public toggleDescription: boolean = false;
   private _destroy$ = new Subject<boolean>();
+  public userId: string | null = '';
 
   constructor(
     private route: ActivatedRoute,
-    private actorService: ActorService
+    private actorService: ActorService,
+    public authService: AuthService
   ) { }
 
   ngOnInit(): void {
     this.loadActor();
+    this.userId = localStorage.getItem('user_id');
   }
 
   public loadActor() {
@@ -39,7 +43,7 @@ export class ActorDetailComponent implements OnInit, OnDestroy {
         this.actor = results.bio;
         this.awards = results.awards;
         this.knownFor = results.knownfor;
-      })    
+      })
     });
   }
 

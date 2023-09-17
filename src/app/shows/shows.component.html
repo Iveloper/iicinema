@@ -1,32 +1,34 @@
-<main id="shows-main">
-    <section>
-        <app-filters [elements]="shows"></app-filters>
-    </section>
-    <section class="loading-spinner">
-        <mat-spinner *ngIf="loading$ | async"></mat-spinner>
-    </section>
-    <section class="shows">
-        <ng-container *ngFor="let show of shows">
-            <li>
-                <a class="poster-holder" routerLink="/shows/{{show.id}}">
-                    <img [src]="show.image.url"/>
-                </a>
-                <a routerLink="/shows/{{show.id}}">
-                    <h2>
-                        <span>{{show.title}}</span>
-                    </h2>
-                </a>
-                <h4>
-                    <span>
-                        ({{show.seriesStartYear}} - {{show.seriesEndYear}}) / 
-                        {{show.runningTimeInMinutes|minutesToHours}}
-                    </span>
-                </h4>
-                <div class="casting-holder">
-                    {{'title.starring' | translate}}: {{show.credits|symbolSeparating: ', '}}
-                </div>
-            </li>
-        </ng-container>
-    </section>
-</main>
-    
+<app-filters [elements]="shows"></app-filters>
+<div class="loading-spinner">
+    <mat-spinner *ngIf="loading$ | async"></mat-spinner>
+</div>
+<div class="shows">
+    <ng-container *ngFor="let show of shows">
+        <li>
+            <a class="poster-holder" routerLink="/shows/{{show.id}}">
+                <img [src]="show.image.url"/>
+            </a>
+            <a routerLink="/shows/{{show.id}}">
+                <h2>
+                    <span>{{show.title}}</span>
+                </h2>
+            </a>
+            <div *ngIf="userId" class="favorite-icon-holder" (click)="authService.toggleFavorite('show', show.id)">
+              <span>
+                <mat-icon>
+                  {{ authService.isFavorite('show', show.id) ? 'favorite' : 'favorite_border' }}
+                </mat-icon>
+              </span>
+            </div>
+            <h4>
+                <span>
+                    ({{show.seriesStartYear}} - {{show.seriesEndYear}}) /
+                    {{show.runningTimeInMinutes|minutesToHours}}
+                </span>
+            </h4>
+            <div class="casting-holder">
+                {{'title.starring' | translate}}: {{show.credits|symbolSeparating: ', '}}
+            </div>
+        </li>
+    </ng-container>
+</div>

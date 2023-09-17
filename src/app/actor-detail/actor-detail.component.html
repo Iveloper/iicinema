@@ -8,7 +8,14 @@
                 <div class="poster-holder">
                     <img [src]="actor.image.url"/>
                 </div>
-                <h2> {{actor.name}} </h2>
+                <h2 class="title-holder"> {{actor.name}} </h2>
+                <div *ngIf="userId" class="favorite-icon-holder" (click)="authService.toggleFavorite('actor', actor.id)">
+                  <span>
+                    <mat-icon>
+                      {{ authService.isFavorite('actor', actor.id) ? 'favorite' : 'favorite_border' }}
+                    </mat-icon>
+                  </span>
+                </div>
             </div>
             <div class="col-12 col-md-12 col-lg-8">
                 <div class="actor-basic-info-holder">
@@ -45,22 +52,22 @@
                     <div class="toggle-icons">
                         <mat-icon
                         title = "{{'actor-detail.biography'|translate}}"
-                        (click)="toggleDescription = false"  
+                        (click)="toggleDescription = false"
                         [class.clickedIcon] = "!toggleDescription">
                             info
                         </mat-icon>
                         <mat-icon
                         title = "{{'actor-detail.awards'|translate}}"
-                        (click) = "toggleDescription = true"  
-                        [class.clickedIcon] = "toggleDescription"> 
+                        (click) = "toggleDescription = true"
+                        [class.clickedIcon] = "toggleDescription">
                             monetization_on
                         </mat-icon>
                     </div>
                     <article class="biography-container" *ngIf="!toggleDescription">
                         <p> {{actor.miniBios[0].text}} </p>
-                        <p *ngIf="actor.miniBios[0].author"> 
+                        <p *ngIf="actor.miniBios[0].author">
                             <mat-icon title="{{'actor-detail.author'|translate}}">account_circle</mat-icon>
-                            <span> {{actor.miniBios[0].author}} </span> 
+                            <span> {{actor.miniBios[0].author}} </span>
                         </p>
                     </article>
                     <article class="awards-container" *ngIf="toggleDescription">
@@ -97,11 +104,11 @@
             <ng-container *ngFor="let movie of knownFor">
                 <div class="col-sm-12 col-md-6 col-lg-4 mlt-movie-details" *ngIf="movie.title.image">
                     <a  *ngIf="movie.title.titleType == 'tvSeries'" class="poster-holder" routerLink="/shows/{{movie.title.id}}">
-                        <img [src]="movie.title.image?.url"/>
+                        <img [src]="movie.title.image.url"/>
                     </a>
-                    
+
                     <a *ngIf="movie.title.titleType != 'tvSeries'" class="poster-holder" routerLink="/movies/{{movie.title.id}}">
-                        <img [src]="movie.title.image?.url"/>
+                        <img [src]="movie.title.image.url"/>
                     </a>
 
                     <a  *ngIf="movie.title.titleType == 'tvSeries'" routerLink="/shows/{{movie.title.id}}">
@@ -116,7 +123,7 @@
                     </a>
 
                     <h4>
-                        <span>({{movie.title.year}}) / 
+                        <span>({{movie.title.year}}) /
                             <mat-icon title="{{'movie-detail.rating'|translate}}" *ngIf="movie.imdbRating >= 8">
                                 star
                             </mat-icon>

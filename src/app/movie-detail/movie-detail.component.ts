@@ -8,6 +8,7 @@ import { Plot } from 'src/app/interfaces/plot';
 import { Principals } from 'src/app/interfaces/principals';
 import { Rating } from 'src/app/interfaces/rating';
 import { Review } from 'src/app/interfaces/review';
+import { AuthService } from '../config/auth.service';
 
 @Component({
   selector: 'app-movie-detail',
@@ -22,7 +23,7 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
   public movieRatings!: Rating;
   public moviePlots!: Plot;
   public movieGenres: Array<String> = [];
-  public userReviews!: Review[]; 
+  public userReviews!: Review[];
   public reviewSource!: Review[];
   public moreLikeThisId: String[] = [];
   public moreLikeThisDetail!: Movie[];
@@ -30,6 +31,7 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
   public loadingMoreLikeThis$!: Observable<boolean>;
   public toggleDescription: boolean = false;
   private _destroy$ = new Subject<boolean>();
+  public userId: string | null = '';
 
   //Paginator config
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -38,12 +40,14 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private generalService: GeneralService
+    private generalService: GeneralService,
+    public authService: AuthService
   ) { }
 
   ngOnInit(): void {
     console.log(this.movie);
     this.loadMovie();
+    this.userId = localStorage.getItem('user_id');
   }
 
   public loadMovie() {

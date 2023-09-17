@@ -1,0 +1,206 @@
+<div class="profile-container">
+  <div class="left-side-nav  col-md-3 col-sm-12">
+    <mat-icon class="profile-icon">account_circle</mat-icon>
+    <div class="user-info">
+      <p>{{ username }}</p>
+      <p>{{ email }}</p>
+    </div>
+    <div class="navigation">
+      <mat-nav-list class="mat-nav">
+        <a mat-list-item (click)="toggleInfo('user')" class="mat-list-tag" id="user">{{'profile.edit'|translate}}</a>
+        <a mat-list-item (click)="toggleInfo('favorites')" class="mat-list-tag" id="favorites">{{'profile.favorites'|translate}}</a>
+        <a mat-list-item (click)="logout()">{{'profile.log_out'|translate}}</a>
+      </mat-nav-list>
+    </div>
+  </div>
+  <div class="info-container col-md-9 col-sm-12">
+    <div class="login-container" *ngIf="activeInfo === 'user'">
+      <h2>{{'credential.edit_user_info'|translate}}</h2>
+      <form [formGroup]="updateForm" (ngSubmit)="updateUserInfo()">
+        <div class="form-group">
+          <label for="username">{{'credential.username'|translate}}</label>
+          <input type="text" formControlName="editedUsername" id="username" value="">
+          <div *ngIf="updateForm.get('editedUsername')?.invalid && (updateForm.get('editedUsername')?.dirty || updateForm.get('editedUsername')?.touched)" class="error-message">
+            {{'credential.username_required'|translate}}
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">{{'credential.email'|translate}}</label>
+          <input type="email" formControlName="editedEmail" id="email" value="">
+          <div *ngIf="updateForm.get('editedEmail')?.invalid && (updateForm.get('editedEmail')?.dirty || updateForm.get('editedEmail')?.touched)" class="error-message">
+            {{'credential.email_invalid'|translate}}
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">{{'credential.password'|translate}}</label>
+          <input type="password" formControlName="password" id="password">
+          <div *ngIf="updateForm.get('password')?.invalid && (updateForm.get('password')?.dirty || updateForm.get('password')?.touched)" class="error-message">
+            {{'credential.password_required'|translate}}
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">{{'credential.confirm_password'|translate}}</label>
+          <input type="password" formControlName="confirmPassword" id="confirmPassword">
+          <div *ngIf="updateForm.get('confirmPassword')?.invalid && (updateForm.get('confirmPassword')?.dirty || updateForm.get('confirmPassword')?.touched)" class="error-message">
+            {{'credential.confirm_password_required'|translate}}
+          </div>
+          <div *ngIf="updateForm.hasError('passwordMismatch') && updateForm.get('confirmPassword')?.touched" class="error-message">
+            {{'credential.passwords_not_matching'|translate}}
+          </div>
+        </div>
+
+        <div>
+          <button type="submit" [disabled]="updateForm.invalid">{{'credential.update'|translate}}</button>
+        </div>
+      </form>
+    </div>
+    <div *ngIf="activeInfo === 'favorites'">
+       <!-- Buttons to toggle between sections -->
+      <div class="btn-group">
+        <button
+          type="button"
+          class="btn btn-primary"
+          [ngClass]="{ 'active': activeSection === 'movies' }"
+          (click)="setActiveSection('movies')"
+        >
+          {{'landing.movies'|translate}}
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          [ngClass]="{ 'active': activeSection === 'tvShows' }"
+          (click)="setActiveSection('tvShows')"
+        >
+          {{'landing.tv_shows'|translate}}
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          [ngClass]="{ 'active': activeSection === 'actors' }"
+          (click)="setActiveSection('actors')"
+        >
+          {{'landing.actors'|translate}}
+        </button>
+      </div>
+
+      <!-- Display content based on active section -->
+      <div *ngIf="activeSection === 'movies'">
+        <!-- Movies content -->
+        <div class="empty-message" *ngIf="!movies.length">
+          {{'profile.empty_movies_favorites'|translate}}
+        </div>
+        <div *ngIf="movies.length">
+          <app-filters [elements]="movies"></app-filters>
+          <div class="loading-spinner">
+              <mat-spinner *ngIf="loading$ | async"></mat-spinner>
+          </div>
+          <div class="movies">
+              <ng-container *ngFor="let movie of movies">
+                  <li id="{{movie.id}}">
+                      <a class="poster-holder" routerLink="/movies/{{movie.id}}">
+                          <img [src]="movie.image.url"/>
+                      </a>
+                      <a routerLink="/movies/{{movie.id}}">
+                          <h2>
+                              <span>{{movie.title}}</span>
+                          </h2>
+                      </a>
+                      <div *ngIf="id" class="favorite-icon-holder" (click)="authService.toggleFavorite('movie', movie.id); removeFavoriteFromList(movie.id);">
+                        <span>
+                          <mat-icon>
+                            {{ authService.isFavorite('movie', movie.id) ? 'favorite' : 'favorite_border' }}
+                          </mat-icon>
+                        </span>
+                      </div>
+                      <h4>
+                          <span>({{movie.year}}) / {{movie.runningTimeInMinutes|minutesToHours}}</span>
+                      </h4>
+                  </li>
+              </ng-container>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="activeSection === 'tvShows'">
+        <!-- TV Shows content -->
+        <div class="empty-message" *ngIf="!shows.length">
+          {{'profile.empty_shows_favorites'|translate}}
+        </div>
+        <div *ngIf="shows.length">
+          <app-filters [elements]="shows"></app-filters>
+          <div class="loading-spinner">
+              <mat-spinner *ngIf="loading$ | async"></mat-spinner>
+          </div>
+          <div class="shows">
+              <ng-container *ngFor="let show of shows">
+                  <li id="{{show.id}}">
+                      <a class="poster-holder" routerLink="/shows/{{show.id}}">
+                          <img [src]="show.image.url"/>
+                      </a>
+                      <a routerLink="/shows/{{show.id}}">
+                          <h2>
+                              <span>{{show.title}}</span>
+                          </h2>
+                      </a>
+                      <div *ngIf="id" class="favorite-icon-holder" (click)="authService.toggleFavorite('show', show.id); removeFavoriteFromList(show.id);">
+                        <span>
+                          <mat-icon>
+                            {{ authService.isFavorite('show', show.id) ? 'favorite' : 'favorite_border' }}
+                          </mat-icon>
+                        </span>
+                      </div>
+                      <h4>
+                          <span>
+                              ({{show.seriesStartYear}} - {{show.seriesEndYear}}) /
+                              {{show.runningTimeInMinutes|minutesToHours}}
+                          </span>
+                      </h4>
+                  </li>
+              </ng-container>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="activeSection === 'actors'">
+        <!-- Actors content -->
+        <div class="empty-message" *ngIf="!actors.length">
+          {{'profile.empty_actors_favorites'|translate}}
+        </div>
+        <div *ngIf="actors.length">
+          <app-filters [elements]="actors" [type]="'actors'"></app-filters>
+          <div class="loading-spinner">
+              <mat-spinner *ngIf="loading$ | async"></mat-spinner>
+          </div>
+          <div class="actors">
+            <ng-container *ngFor="let actor of actors">
+              <li id="{{actor.id}}">
+                <a class="poster-holder" routerLink="/actors/{{actor.id}}">
+                  <img [src]="actor.image.url"/>
+                </a>
+                <a routerLink="/actors/{{actor.id}}">
+                  <h2>
+                      <span>
+                        {{actor.name}}
+                      </span>
+                  </h2>
+                </a>
+                <div *ngIf="id" class="favorite-icon-holder" (click)="authService.toggleFavorite('actor', actor.id); removeFavoriteFromList(actor.id);">
+                  <span>
+                    <mat-icon>
+                      {{ authService.isFavorite('actor', actor.id) ? 'favorite' : 'favorite_border' }}
+                    </mat-icon>
+                  </span>
+                </div>
+                <div class="casting-holder">
+                  {{ actor.birthPlace }} <br>
+                  {{ actor.birthDate }}
+                </div>
+              </li>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

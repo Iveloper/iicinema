@@ -4,6 +4,7 @@ import { Show } from 'src/app/interfaces/show';
 import { Principals } from 'src/app/interfaces/principals';
 import { GeneralService } from 'src/app/config/general.service';
 import { MessageService } from 'src/app/message.service';
+import { AuthService } from '../config/auth.service';
 
 @Component({
   selector: 'app-shows',
@@ -15,14 +16,17 @@ export class ShowsComponent implements OnInit, OnDestroy {
   public shows: Show[] = [];
   private showsSubscription: Subscription = new Subscription;
   public loading$!: Observable<boolean>;
+  public userId: string | null = '';
 
   constructor(
     private generalService: GeneralService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    public authService: AuthService
   ) { }
 
   ngOnInit(): void {
     this.loadShows();
+    this.userId = localStorage.getItem('user_id');
   }
 
   loadShows(showName: string = 'friend') {

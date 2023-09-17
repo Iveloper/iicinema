@@ -8,7 +8,7 @@ const httpOptions = {
     method: 'GET',
     headers: new HttpHeaders({
         'X-RapidAPI-Host': 'online-movie-database.p.rapidapi.com',
-        'X-RapidAPI-Key': '2b843977d5msh20abdfa70100555p1d2832jsn02f216b2fa61'
+        'X-RapidAPI-Key': 'ebfb745e21msh7e45800dff329aep139f9cjsnac794a999cbf'
     })
 };
 
@@ -58,6 +58,16 @@ export class GeneralService {
         );
     }
 
+    getFavoriteProjectionDetails(projectionId: string): Observable<any> {
+      this.loading$.next(true)
+      return forkJoin({
+          details: this.http.get<any>(`${APIurl}title/get-details?tconst=${projectionId}`, httpOptions)
+      }).pipe(
+          catchError(this.handleError<any>('getDetails', [])),
+          finalize(() => this.loading$.next(false))
+      );
+    }
+
     getProjectionCreditsReviews(projectionId: string): Observable<any> {
         this.loading$.next(true)
         return forkJoin({
@@ -94,6 +104,17 @@ export class GeneralService {
         ).pipe(
             finalize(() => this.loading$.next(false))
         );
+    }
+
+    loadMoviesForGenre(genre: string, limit: number): Observable<any> {
+      this.loading$.next(true);
+      return this.http.get<any>(
+        `${APIurl}title/v2/get-popular-movies-by-genre?genre=${genre}&limit=${limit}`,
+        httpOptions
+      ).pipe(
+        catchError(this.handleError<any>('loadMoviesForGenre', [])),
+        finalize(() => this.loading$.next(false))
+      )
     }
 
     private handleError<T>(operation = 'failed operation', result?: T) {

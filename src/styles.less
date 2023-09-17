@@ -89,6 +89,12 @@ body {
     max-width: 30px;
     border-radius: 50%;
   }
+  .favorite-icon-holder {
+    text-align: center;
+    color: @primaryWhite;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
 }
 body,
 input[type="text"],
@@ -117,6 +123,9 @@ button {
   }
 }
 .mat-menu-content {
+  .mat-menu-item {
+    margin: 0px;
+  }
   a {
     text-decoration: none;
     color: @primaryDark;
@@ -151,6 +160,11 @@ button {
   .app-title {
     color: @primaryWhite;
     font-size: 40px;
+  }
+}
+.login-icon {
+  mat-icon {
+    color: @primaryWhite;
   }
 }
 .movies,

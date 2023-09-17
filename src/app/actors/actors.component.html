@@ -1,40 +1,42 @@
-<main id="actors-main">
-    <section>
-        <app-filters [elements]="actors" [type]="'actors'"></app-filters>
-    </section>
-    <section class="loading-spinner">
-        <mat-spinner *ngIf="loading$ | async"></mat-spinner>
-    </section>
-    <section class="actors">
-        <ng-container *ngFor="let actor of actors">
-            <li>
-                <a class="poster-holder" routerLink="/actors/{{actor.id}}">
-                    <img [src]="actor.image.url"/>
-                </a>
-                <a routerLink="/actors/{{actor.id}}">
-                    <h2>
-                        <span>
-                            {{actor.name}}
-                        </span>
-                    </h2>
-                </a>
-                
-                <div class="casting-holder">
-                    {{'title.known_for'|translate}}:
-                    <ng-container *ngFor="let starred of actor.knownFor; let last = last">
-                        <div class="actor-known-for-holder" *ngIf="starred.titleType == 'tvSeries'">
-                            <a routerLink="/shows/{{starred.id}}">
-                                {{starred.title}}<span *ngIf="!last">, </span>
-                            </a>
-                        </div>
-                        <div class="actor-known-for-holder" *ngIf="starred.titleType == 'movie'">
-                            <a routerLink="/movies/{{starred.id}}">
-                                {{starred.title}}<span *ngIf="!last">, </span>
-                            </a>
-                        </div>
-                    </ng-container>
-                </div>
-            </li>
-        </ng-container>
-    </section>
-</main>
+<app-filters [elements]="actors" [type]="'actors'"></app-filters>
+<div class="loading-spinner">
+    <mat-spinner *ngIf="loading$ | async"></mat-spinner>
+</div>
+<div class="actors">
+    <ng-container *ngFor="let actor of actors">
+        <li>
+            <a class="poster-holder" routerLink="/actors/{{actor.id}}">
+                <img [src]="actor.image.url"/>
+            </a>
+            <a routerLink="/actors/{{actor.id}}">
+                <h2>
+                    <span>
+                      {{actor.name}}
+                    </span>
+                </h2>
+            </a>
+            <div *ngIf="userId" class="favorite-icon-holder" (click)="authService.toggleFavorite('actor', actor.id)">
+              <span>
+                <mat-icon>
+                  {{ authService.isFavorite('actor', actor.id) ? 'favorite' : 'favorite_border' }}
+                </mat-icon>
+              </span>
+            </div>
+            <div class="casting-holder">
+                {{'title.known_for'|translate}}:
+                <ng-container *ngFor="let starred of actor.knownFor; let last = last">
+                    <div class="actor-known-for-holder" *ngIf="starred.titleType == 'tvSeries'">
+                        <a routerLink="/shows/{{starred.id}}">
+                            {{starred.title}}<span *ngIf="!last">, </span>
+                        </a>
+                    </div>
+                    <div class="actor-known-for-holder" *ngIf="starred.titleType == 'movie'">
+                        <a routerLink="/movies/{{starred.id}}">
+                            {{starred.title}}<span *ngIf="!last">, </span>
+                        </a>
+                    </div>
+                </ng-container>
+            </div>
+        </li>
+    </ng-container>
+</div>

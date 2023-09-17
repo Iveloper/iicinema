@@ -6,22 +6,14 @@
         flex-direction: column;
         margin-top: @marginTop;
         img {
-            margin: 0 auto;
             border-radius: @borderRadius;
             max-height: 450px;
             max-width: 335px;
         }
     }
-    .detail-poster-holder {
-        img {
-            margin: unset !important;
-            @media (max-width: @sizes[mobile]) {
-                margin: 0 auto !important;
-            }
-        }
-        h2 {
-            text-align: center !important;
-        }
+    .title-holder {
+      text-align: center;
+      font-size: 28px;
     }
     .show-basic-info-holder{
         .mat-toolbar {
