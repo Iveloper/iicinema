@@ -1,41 +1,47 @@
 <div class="landing-container">
     <ng-container>
-        <div class="component-header" 
-        (mouseenter)="animatedHover($event, 'show')" 
-        (mouseleave)="animatedHover($event, 'hide')">
-            <span>{{'landing.movies' | translate}}:</span> 
-            <a [routerLink]="['/movies']">
-                <span class="hover-text">{{'landing.explore' | translate}} 
-                    <mat-icon>keyboard_arrow_right</mat-icon>
-                </span>
-            </a>
-        </div>
-        <app-movies></app-movies>
+        <section id="movies">
+            <div class="component-header" 
+            (mouseenter)="animatedHover($event, 'show')" 
+            (mouseleave)="animatedHover($event, 'hide')">
+                <span>{{'landing.movies' | translate}}:</span> 
+                <a [routerLink]="['/movies']">
+                    <span class="hover-text">{{'landing.explore' | translate}} 
+                        <mat-icon>keyboard_arrow_right</mat-icon>
+                    </span>
+                </a>
+            </div>
+            <app-movies></app-movies>
+        </section>
     </ng-container>
 
     <ng-container>
-        <div class="component-header"       
-        (mouseenter)="animatedHover($event, 'show')" 
-        (mouseleave)="animatedHover($event, 'hide')">
-            <span>{{'landing.tv_shows' | translate}}:</span> 
-            <a [routerLink]="['/shows']">
-                <span class="hover-text">{{'landing.explore' | translate}} 
-                    <mat-icon>keyboard_arrow_right</mat-icon>
-                </span>
-            </a></div>
-        <app-shows></app-shows>
+        <section id="shows">
+            <div class="component-header"       
+            (mouseenter)="animatedHover($event, 'show')" 
+            (mouseleave)="animatedHover($event, 'hide')">
+                <span>{{'landing.tv_shows' | translate}}:</span> 
+                <a [routerLink]="['/shows']">
+                    <span class="hover-text">{{'landing.explore' | translate}} 
+                        <mat-icon>keyboard_arrow_right</mat-icon>
+                    </span>
+                </a></div>
+            <app-shows></app-shows>
+        </section>
     </ng-container>
 
     <ng-container>
-        <div class="component-header"       
-        (mouseenter)="animatedHover($event, 'show')" 
-        (mouseleave)="animatedHover($event, 'hide')">
-            <span>{{'landing.actors' | translate}}:</span> 
-            <a [routerLink]="['/actors']">
-                <span class="hover-text">{{'landing.explore' | translate}} 
-                    <mat-icon>keyboard_arrow_right</mat-icon>
-                </span>
-            </a></div>
-        <app-actors></app-actors>
+        <section id="shows">
+            <div class="component-header"       
+            (mouseenter)="animatedHover($event, 'show')" 
+            (mouseleave)="animatedHover($event, 'hide')">
+                <span>{{'landing.actors' | translate}}:</span> 
+                <a [routerLink]="['/actors']">
+                    <span class="hover-text">{{'landing.explore' | translate}} 
+                        <mat-icon>keyboard_arrow_right</mat-icon>
+                    </span>
+                </a></div>
+            <app-actors></app-actors>
+        </section>
     </ng-container>
 </div>

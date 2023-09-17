@@ -9,7 +9,7 @@
     (scrolled)="lazyLoadScroll()" *ngIf="show">
     <div class="container">
         <div class="row">
-            <div class="col-12 col-md-12 col-lg-3">
+            <div class="col-12 col-md-12 col-lg-3 detail-poster-holder">
                 <div class="poster-holder">
                     <img [src]="show.image.url"/>
                 </div>
@@ -22,7 +22,7 @@
                   </span>
                 </div>
             </div>
-            <div class="col-12 col-md-12 col-lg-4 d-grid">
+            <section class="col-12 col-md-12 col-lg-4 d-grid">
                 <div class="show-basic-info-holder">
                     <mat-toolbar>
                         <mat-toolbar-row class="d-flex justify-content-center">
@@ -63,7 +63,7 @@
                         </mat-toolbar-row>
                     </mat-toolbar>
                 </div>
-                <div class="show-description-chart-holder">
+                <article class="show-description-chart-holder">
                     <div class="toggle-icons">
                         <mat-icon
                         title = "{{'show-detail.show_plot'|translate}}"
@@ -95,13 +95,13 @@
                             {{'show-detail.total_voters'|translate}}: {{showRatings.ratingCount|spaceBigIntegers}}
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-12 col-lg-5">
+                </article>
+            </section>
+            <section class="col-12 col-md-12 col-lg-5">
                 <div class="show-user-reviews-holder">
                     <h2 class="text-center">{{'show-detail.user_reviews'|translate}}</h2>
                     <ng-container *ngFor="let review of reviewSource">
-                        <div class="row d-flex align-items-center w-100 m-auto review-row">
+                        <article class="row d-flex align-items-center w-100 m-auto review-row">
                             <div class="col-2 text-center p-0">
                                 <mat-icon title="{{'show-detail.author'|translate}}">account_circle</mat-icon>
                                 <div class="user-nickname-holder">
@@ -138,7 +138,7 @@
                                     {{review.reviewText}}
                                 </p>
                             </div>
-                        </div>
+                        </article>
                     </ng-container>
                     <mat-paginator #paginator
                         [length]="userReviews?.length"
@@ -148,9 +148,9 @@
                         (page)="handlePage($event)">
                     </mat-paginator>
                 </div>
-            </div>
+            </section>
         </div>
-        <div class="row show-credits-holder" *ngIf="showCredits">
+        <section class="row show-credits-holder" *ngIf="showCredits">
             <h2>{{'show-detail.top_billed_cast'|translate}}</h2>
             <ng-container *ngFor="let credit of showCredits|slice:0:6">
                 <div class="col-12 col-sm-12 col-md-6 col-lg-4">
@@ -176,11 +176,11 @@
                     </div>
                 </div>
             </ng-container>
-        </div>
-        <div class="loading-spinner">
+        </section>
+        <section class="loading-spinner">
             <mat-spinner *ngIf="loadingMoreLikeThis$ | async"></mat-spinner>
-        </div>
-        <div class="row more-like-this-holder" *ngIf="moreLikeThisDetail">
+        </section>
+        <section class="row more-like-this-holder" *ngIf="moreLikeThisDetail">
             <h2 class="container-title">{{'show-detail.more_like_this'|translate}}</h2>
             <ng-container *ngFor="let show of moreLikeThisDetail">
                 <div class="col-sm-12 col-md-6 col-lg-4 mlt-show-details" *ngIf="show.image">
@@ -197,6 +197,6 @@
                     </h4>
                 </div>
             </ng-container>
-        </div>
+        </section>
     </div>
-</div>
+  </div>

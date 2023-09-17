@@ -45,6 +45,7 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    console.log(this.movie);
     this.loadMovie();
     this.userId = localStorage.getItem('user_id');
   }

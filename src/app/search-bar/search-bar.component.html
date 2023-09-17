@@ -1,12 +1,13 @@
-<form class="search-form" (ngSubmit)="getTitlesBySearch(search)">
+<form [formGroup]="searchForm" class="search-form" (ngSubmit)="getTitlesBySearch()">
     <p>
         <mat-form-field appearance="legacy">
-            <input matInput name="search" [(ngModel)]="search" placeholder="{{'main.search_bar_placeholder' | translate}}" type="text"
-            (input)="onSearchChange(search)">
-            <div class="remove-input-value" *ngIf="isInputPopulated">
+            <input matInput 
+            formControlName="search" 
+            placeholder="{{'main.search_bar_placeholder' | translate}}" type="text">
+            <div class="remove-input-value" *ngIf="searchForm.get('search')?.value">
                 <mat-icon (click)="deleteSearchInput()">close</mat-icon>
             </div>
-            <button type="submit" [disabled]="!isValueLengthEnough">
+            <button type="submit" [disabled]="!searchForm.valid">
                 <mat-icon matSuffix>search</mat-icon>
             </button>
             <mat-hint>{{'main.search_bar_hint' | translate}}</mat-hint>
