@@ -3,6 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { map, Observable, Subscription } from 'rxjs';
 import { GeneralService } from 'src/app/config/general.service';
 import { Actor } from 'src/app/interfaces/actor';
+import { FavoriteService } from '../config/favorite.service';
 
 @Component({
   selector: 'app-actors',
@@ -18,7 +19,8 @@ export class ActorsComponent implements OnInit, OnDestroy {
 
   constructor(
     private generalService: GeneralService,
-    public authService: AuthService
+    public authService: AuthService,
+    public favoriteService: FavoriteService
   ) { }
 
   ngOnInit(): void {

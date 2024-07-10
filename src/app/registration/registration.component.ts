@@ -61,7 +61,7 @@ export class RegistrationComponent implements OnInit {
     return this.http.post<any>('http://localhost:8080/api/users/register', formData, {headers: header})
       .subscribe(
         response => {
-          this.openDialog('Success', 'Registration successful');
+          this.openDialog('Success', 'Registration successful.');
         },
         error => {
           this.openDialog('Error', 'Registration failed');

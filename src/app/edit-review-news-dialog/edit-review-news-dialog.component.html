@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>{{'movie-detail.reviews_form_edit_dialog'|translate}}</h2>
+<div mat-dialog-content>
+  <form [formGroup]="editReviewForm">
+    <mat-form-field appearance="fill">
+      <mat-label>{{'movie-detail.reviews_form_title'|translate}}</mat-label>
+      <input matInput formControlName="review_title">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="textarea-field">
+      <mat-label>{{'movie-detail.reviews_form_review'|translate}}</mat-label>
+      <textarea matInput formControlName="review_content" placeholder="{{'movie-detail.reviews_form_textarea_placeholder'|translate}}"></textarea>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button color="primary" (click)="onSubmit()" [disabled]="!editReviewForm.valid" class="submit-button">{{'movie-detail.reviews_form_submit'|translate}}</button>
+  <button mat-button (click)="onCancel()" class="cancel-button">{{'movie-detail.reviews_form_cancel'|translate}}</button> 
+</div>

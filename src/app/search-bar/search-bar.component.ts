@@ -16,6 +16,7 @@ export class SearchBarComponent implements OnInit {
     ]),
   });
   public isInputPopulated: boolean = false;
+  public isValueLengthEnough: boolean = false;
   public currentRoute: string = '';
 
   constructor(
@@ -26,11 +27,25 @@ export class SearchBarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onSearchChange(value: string) {
+    if(value.length) {
+      this.isInputPopulated = true;
+      if(value.length > 2) {
+        this.isValueLengthEnough = true;
+      } else {
+        this.isValueLengthEnough = false
+      }
+    } else {
+      this.isInputPopulated = false;
+    }
+  }
+
   deleteSearchInput() {
     this.searchForm.setValue({
       search: ''
     });
     this.isInputPopulated = false;
+    this.isValueLengthEnough = false;
   }
 
 

@@ -1,0 +1,41 @@
+<div class="container col-md-12">
+    <h2 class="articles-header">{{'article.articles'|translate}}</h2>
+    <div *ngIf="roleId === '1' || roleId === '3'" class="add-article-holder">
+        <button mat-button color="primary" (click)="addArticle()">{{'article.add_article'|translate}}</button>
+    </div>
+    <div class="row articles-row">
+        <div *ngFor="let article of articles" class="col-md-6 col-sm-12 article-container">
+            <div class="whole-article-container">
+                <div class="article-holder">
+                    <div class="article-user-info-holder">
+                        <mat-icon>account_circle</mat-icon>
+                        <div class="username">{{ article.username }}</div>
+                        <div class="article-popup">
+                            <mat-icon>calendar_today</mat-icon>
+                            <span class="article-date">{{ article.created_at }}</span>
+                            <div *ngIf="article.updated_at != article.created_at" class="hover-popup">{{'article.updated_at'|translate}} {{ article.updated_at }}</div>
+                        </div>
+                    </div>
+                    <div class="article-title-holder">
+                        <h2 class="article-title">{{ article.title }}</h2>
+                    </div>
+                </div>
+                <div class="article-list-image-main-container">
+                    <div *ngIf="article.image_url" class="article-list-image-holder" (click)="readMore(article.id)">
+                        <img [src]="article.image_url" alt="Article Image" class="article-list-image">
+                    </div>
+                </div>
+                <p class="article-comment-holder">{{ article.content | slice:0:400 }}...</p>
+                <div class="read-more-article-holder">
+                    <button mat-button color="primary" (click)="readMore(article.id)">{{'article.read_more'|translate}}</button>
+                </div>
+            </div>
+        </div>
+        <mat-paginator 
+            [pageSize]="4" 
+            [length]="totalArticles" 
+            [showFirstLastButtons]="true"
+            (page)="onPageChange($event)">
+        </mat-paginator>
+    </div>
+</div>

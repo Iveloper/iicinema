@@ -1,14 +1,14 @@
-import { ActorsComponent } from './../actors/actors.component';
 import { Component, Inject, OnInit, Renderer2 } from '@angular/core';
 import { AuthService } from '../config/auth.service';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegistrationResultDialogComponent } from '../registration-result-dialog/registration-result-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { DOCUMENT } from '@angular/common';
 import { GeneralService } from '../config/general.service';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { ActorService } from '../config/actor.service';
+import { ConfirmDeleteDialogComponent } from '../confirm-delete-dialog/confirm-delete-dialog.component';
+import { FavoriteService } from '../config/favorite.service';
 
 @Component({
   selector: 'app-profile',
@@ -17,6 +17,7 @@ import { ActorService } from '../config/actor.service';
 })
 export class ProfileComponent implements OnInit {
   public id: string = localStorage.getItem('user_id') || '';
+  public role: string = localStorage.getItem('role_id') || '';
   public username: string | null | undefined;
   public email: string | null | undefined;
   public activeInfo: string | null | undefined;
@@ -28,13 +29,16 @@ export class ProfileComponent implements OnInit {
   public actors: any = [];
   public activeSection: string = '';
   public favorites = JSON.parse(localStorage.getItem('favorites') || '{}');
+  public unapprovedUsers: any = [];
+  public allUsersAndAuthors: any = [];
+  public roles: any = [];
 
   constructor(
     public authService: AuthService,
+    public favoriteService: FavoriteService,
     private formBuilder: FormBuilder,
     private dialog: MatDialog,
     private router: Router,
-    @Inject(DOCUMENT) document: Document,
     private generalService: GeneralService,
     private actorService: ActorService,
     private renderer: Renderer2
@@ -45,6 +49,28 @@ export class ProfileComponent implements OnInit {
     this.activeSection = 'movies'
     this.username = localStorage.getItem('username');
     this.email = localStorage.getItem('email');
+
+    if (this.role === '1') {
+      this.loadRoles();
+
+      this.authService.getUnapprovedUsers().subscribe(
+        response => {
+          this.unapprovedUsers = response;
+        },
+        error => {
+          this.openDialog('Error', 'Fetching unapproved users failed.');
+        }
+      );
+
+      this.authService.getAllUsersAndAuthors().subscribe(
+        response => {
+          this.allUsersAndAuthors = response;
+        },
+        error => {
+          this.openDialog('Error', 'Fetching the users failed.');
+        }
+      );
+    }
 
     this.updateForm = this.formBuilder.group({
       editedUsername: [this.username, Validators.required],
@@ -70,6 +96,8 @@ export class ProfileComponent implements OnInit {
     this.activeInfo = infoType;
     document.getElementById('user')?.classList.remove('active');
     document.getElementById('favorites')?.classList.remove('active');
+    document.getElementById('approve')?.classList.remove('active');
+    document.getElementById('allUsersAndAuthors')?.classList.remove('active');
     document.getElementById(infoType)?.classList.add('active');
   }
 
@@ -121,13 +149,11 @@ export class ProfileComponent implements OnInit {
     if (this.updateForm.invalid) {
       return;
     }
-
     const formData = {
       username: this.updateForm.value['editedUsername'],
       email: this.updateForm.value['editedEmail'],
       password: this.updateForm.value['password']
     };
-
     // Call your AuthService method to update user info
     this.authService.updateUserInfo(this.id, formData.username, formData.email, formData.password).subscribe(
       response => {
@@ -149,11 +175,9 @@ export class ProfileComponent implements OnInit {
   passwordMatchValidator(control: AbstractControl): { [key: string]: boolean } | null {
     const password = control.get('password');
     const confirmPassword = control.get('confirmPassword');
-
     if (password && confirmPassword && password.value !== confirmPassword.value) {
       return { 'passwordMismatch': true };
     }
-
     return null;
   }
 
@@ -161,6 +185,78 @@ export class ProfileComponent implements OnInit {
     const dialogRef = this.dialog.open(RegistrationResultDialogComponent, {
       data: { title, message },
     });
+  }
+
+  loadRoles(): void {
+    this.authService.fetchRoles().subscribe(
+      response => {
+        this.roles = response;
+    },
+      error => {
+        this.openDialog('Error', 'Something went wrong while fetching all the roles');
+    });
+  }
+
+  changeUserRole(userId: number, roleId: number): void {
+    this.authService.changeUserRole(userId, roleId).subscribe(() => {
+      this.openDialog('Success', 'User role updated successful');
+    });
+  }
+
+  confirmApproval(userId: string): void {
+    const dialogRef = this.dialog.open(ConfirmDeleteDialogComponent, {
+      data: 'Are you sure of the approval of this user?'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.approveUser(userId);
+      }
+    });
+  }
+
+  approveUser(userId: string): void {
+    this.authService.approveUser(userId).subscribe(
+      response => {
+        this.unapprovedUsers = this.unapprovedUsers.filter((item: { id: string; }) => item.id !== userId);
+        this.openDialog('Success', 'User approved successful');
+      },
+      error => {
+        this.openDialog('Error', 'Approving failed');
+      }
+    );
+  }
+
+  confirmDelete(userId: string): void {
+    const dialogRef = this.dialog.open(ConfirmDeleteDialogComponent, {
+      data: 'Do you really want to delete this user?'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.deleteUser(userId);
+      }
+    });
+  }
+
+  deleteUser(userId: string): void {
+    this.authService.deleteUser(userId).subscribe(
+      response => {
+        this.unapprovedUsers = this.unapprovedUsers.filter((item: { id: string; }) => item.id !== userId);
+        this.openDialog('Success', response.message);
+      },
+      error => {
+        this.openDialog('Error', 'Deleting failed');
+      }
+    );
+  }
+
+  isRoleReadOnly(userRoleId: string): boolean {
+    if (userRoleId === '1') {
+      return true;
+    }
+
+    return false;
   }
 
   ngOnDestroy(): void {

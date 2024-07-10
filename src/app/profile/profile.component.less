@@ -1,161 +1,241 @@
 @import '/src/styles.less';
-.profile-container {
-  color: @primaryWhite;
-  display: flex;
-  .left-side-nav {
-    border-right: 1px solid @primaryWhite;
-    .profile-icon {
-      font-size: 48px;
-      width: 100%;
-      text-align: center;
-      margin-top: 15px;
-    }
-
-    .user-info {
-      text-align: center;
-      font-size: 18px;
-      border-bottom: 1px solid @primaryWhite;
-      padding: 15px;
-    }
-
-    .navigation {
-      text-align: center;
-      margin-top: 15px;
-    }
-
-    .mat-nav {
-      display: grid !important;
-      padding: 15px !important;
-      font-size: 22px !important;
-      a {
-        margin-bottom: 30px !important;
-        text-decoration: none;
-        color: @primaryWhite;
-        &:hover {
-          color: @secondaryWhite;
-          cursor: pointer;
-        }
-      }
-      .active {
-        color: @secondaryWhite;
-        text-decoration: none;
-      }
-    }
-  }
-
-  .info-container {
-    flex: 1;
-    .login-container {
-      max-width: 50%;
-      margin: 0 auto;
-      padding: 20px;
-      border-radius: 4px;
-
-      h2 {
+.main-profile-container {
+  .profile-container {
+    color: @primaryWhite;
+    display: flex;
+    .left-side-nav {
+      border-right: 1px solid @primaryWhite;
+      .profile-icon {
+        font-size: 48px;
+        width: 100%;
         text-align: center;
-        font-size: 30px;
+        margin-top: 15px;
       }
+  
+      .user-info {
+        text-align: center;
+        font-size: 18px;
+        border-bottom: 1px solid @primaryWhite;
+        padding: 15px;
+      }
+  
+      .navigation {
+        text-align: center;
+        margin-top: 15px;
 
-      .form-group {
-        margin-bottom: 10px;
-
-        label {
-          display: block;
-        }
-
-        input {
-          width: 100%;
-          padding: 8px;
-          font-size: 16px;
-          border: none;
-          background-color: @primaryWhite;
-          border-radius: 4px;
-          box-sizing: border-box;
-        }
-        .error-message {
-          color:crimson;
-          font-size: 16px;
+        @media (max-width: @sizes[mobile]) {
+          border-bottom: 1px solid #fff;
+          margin-top: 20px;
         }
       }
-
-      .register-link {
-        p {
-          color: @primaryWhite
-        }
+  
+      .mat-nav {
+        display: grid !important;
+        padding: 15px !important;
+        font-size: 22px !important;
         a {
-          color: @secondaryWhite;
+          margin-bottom: 30px !important;
           text-decoration: none;
+          color: @primaryWhite;
           &:hover {
-            color: @primaryWhite;
+            color: @secondaryWhite;
             cursor: pointer;
           }
         }
-
-      }
-
-      button {
-        display: block;
-          width: 100%;
-          padding: 10px;
-          color: @primaryWhite;
-          border: 1px solid @primaryWhite;
-          border-radius: 4px;
-          cursor: pointer;
-          background-color: transparent;
-      }
-
-      button:disabled {
-        cursor: not-allowed;
-      }
-    }
-    .btn-group {
-      width: 100%;
-      padding: 25px
-    }
-
-    .filter-holder {
-      padding-left: 25px;
-      padding-right: 40px;
-    }
-
-    .actors, .movies, .shows {
-      width: 100%;
-      display: flex;
-      flex-wrap: wrap;
-      li {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        list-style: none;
-        margin: 10px;
-        padding: 15px;
-        border-radius: 12px;
-        text-align: center;
-        background: @primaryDark;
-        img {
-          max-width: 300px;
-          border-radius: 12px;
+        .active {
+          color: @secondaryWhite;
+          text-decoration: none;
         }
+      }
+    
+      @media (max-width: @sizes[mobile]) {
+        border: unset;
+      }
+    }
+  
+    .info-container {
+      flex: 1;
+      .login-container {
+        max-width: 50%;
+        margin: 0 auto;
+        padding: 20px;
+        border-radius: 4px;
+  
         h2 {
-          font-size: 1.8em;
-          padding: 15px 10px 0;
-          margin-top: auto;
+          text-align: center;
+          font-size: 30px;
         }
-        .actor-known-for-holder {
-          display: initial;
+  
+        .form-group {
+          margin-bottom: 10px;
+  
+          label {
+            display: block;
+          }
+  
+          input {
+            width: 100%;
+            padding: 8px;
+            font-size: 16px;
+            border: none;
+            background-color: @primaryWhite;
+            border-radius: 4px;
+            box-sizing: border-box;
+          }
+          .error-message {
+            color:crimson;
+            font-size: 16px;
+          }
+        }
+  
+        .register-link {
+          p {
+            color: @primaryWhite
+          }
           a {
-            color: @primaryWhite;
+            color: @secondaryWhite;
+            text-decoration: none;
             &:hover {
-                color: @secondaryWhite;
+              color: @primaryWhite;
+              cursor: pointer;
+            }
+          }
+  
+        }
+  
+        button {
+          display: block;
+            width: 100%;
+            padding: 10px;
+            color: @primaryWhite;
+            border: 1px solid @primaryWhite;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: transparent;
+        }
+  
+        button:disabled {
+          cursor: not-allowed;
+        }
+      
+        @media (max-width: @sizes[mobile]) {
+          max-width: 100%;
+          padding: 0;
+        }
+      }
+      .btn-group {
+        width: 100%;
+        margin-left: 7px;
+      }
+  
+      .filter-holder {
+        padding-left: 25px;
+        padding-right: 40px;
+      }
+  
+      .actors, .movies, .shows {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        li {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          list-style: none;
+          margin: 10px;
+          padding: 15px;
+          border-radius: 12px;
+          text-align: center;
+          background: @primaryDark;
+          img {
+            max-width: 300px;
+            border-radius: 12px;
+          }
+          h2 {
+            font-size: 1.8em;
+            padding: 15px 10px 0;
+            margin-top: auto;
+          }
+          .actor-known-for-holder {
+            display: initial;
+            a {
+              color: @primaryWhite;
+              &:hover {
+                  color: @secondaryWhite;
+              }
             }
           }
         }
       }
-    }
-    .empty-message {
-      text-align: center;
-      font-size: 28px;
+      .empty-message {
+        text-align: center;
+        font-size: 28px;
+      }
+      .unapproved {
+        display: flex;
+        padding: 5px;
+        border-radius: 25px;
+        text-align: center;
+        font-size: 20px;
+        margin: 0;
+  
+        .unapproved-user-container {
+          border: 1px solid @primaryWhite;
+          border-radius: 5px;
+          padding: 5px;
+          margin: 5px;
+  
+          .unapproved-user-icon {
+            margin-top: 5px;
+            transform: scale(1.5);
+          }
+          
+          .unapproved-username,
+          .unapproved-email {
+            margin: 8px 0;
+          }
+          
+          .unapproved-action-buttons {
+            display: flex;
+            justify-content: center;
+            .warn {
+              background-color: #ba1a1a;
+            }
+            .primary {
+              background-color: #005cbb;
+            }
+            button {
+              margin: 5px;
+              padding: 5px;
+              color: white;
+              
+            }
+          }
+  
+          .user-role-field {
+            width: 100%;
+            .mat-label {
+              color: @primaryWhite !important;
+            }
+          }
+
+          @media (max-width: @sizes[mobile]) {
+            margin: 0px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+          }
+        }
+
+        @media (max-width: @sizes[mobile]) {
+          margin: -20px;
+        }
+      }
+
+      @media (max-width: @sizes[mobile]) {
+        margin-top: 50px;
+        margin-bottom: 50px;
+      }
     }
   }
 }

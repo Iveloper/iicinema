@@ -12,6 +12,9 @@ import { ShowDetailComponent } from 'src/app/show-detail/show-detail.component';
 import { ShowsComponent } from 'src/app/shows/shows.component';
 import { GenreTitlesComponent } from './genre-titles/genre-titles.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ArticlesComponent } from './articles/articles.component';
+import { ArticleDetailComponent } from './article-detail/article-detail.component';
+import { ArticleCreateComponent } from './article-create/article-create.component';
 
 export const routes: Routes = [
   {
@@ -85,6 +88,29 @@ export const routes: Routes = [
     component: GenreTitlesComponent,
     data: {
       show: false,
+    }
+  },
+  {
+    path: 'articles',
+    component: ArticlesComponent,
+    data: {
+      show: true,
+      title: 'navigation.articles',
+      icon: 'article'
+    }
+  },
+  {
+    path: 'articles/:id',
+    component: ArticleDetailComponent,
+    data: {
+      show: false
+    }
+  },
+  {
+    path: 'article/create',
+    component: ArticleCreateComponent,
+    data: {
+      show: false
     }
   },
   {

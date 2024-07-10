@@ -1,0 +1,68 @@
+<div class="articles-detail-container container col-md-12">
+    
+    <div *ngIf="author" class="author-info-holder">
+        <mat-icon>account_circle</mat-icon>
+        <p class="author-username-holder">{{ author[0].username }}</p>
+        <div class="article-popup">
+            <mat-icon>calendar_today</mat-icon>
+            <span class="article-date">{{ article.created_at }}</span>
+            <div *ngIf="article.updated_at != article.created_at" class="hover-popup">{{'article.updated_at'|translate}} {{ article.updated_at }}</div>
+        </div>
+        <div class="update-delete-review-icons-holder" >
+            <mat-icon class="update-review-icon" *ngIf="userId === article.author_id" (click)="openEditArticleDialog(article)">edit</mat-icon>
+            <mat-icon class="delete-review-icon" *ngIf="roleId === '1' || userId === article.author_id" (click)="confirmDeleteArticle(article.id)">delete_outline</mat-icon>
+        </div>
+    </div>
+    <div *ngIf="article">
+        <h2>{{ article.title }}</h2>
+        <p>{{ article.content }}</p>
+    </div>
+    <div *ngIf="images && images.length" class="image-gallery">
+        <div *ngFor="let image of images" class="image-container">
+          <img [src]="image.src" alt="Article Image" class="img-fluid">
+            <mat-icon *ngIf="userId === article.author_id" (click)="confirmDeleteImage(image.id)">remove</mat-icon>
+        </div>
+    </div>
+    <h2 class="article-comments-header">{{'article.comments'|translate}}</h2>
+    <div class="production-reviews-section" *ngIf="comments">
+        <div *ngFor="let review of comments" class="review-container">
+            <div class="whole-review-container">
+                <div class="review-holder">
+                    <div class="review-user-info-holder">
+                        <mat-icon>account_circle</mat-icon>
+                        <div class="username">{{ review.username }}</div>
+                        <div class="review-popup">
+                            <mat-icon>calendar_today</mat-icon>
+                            <span class="review-date">{{ review.created_at }}</span>
+                            <div *ngIf="review.updated_at != review.created_at" class="hover-popup">{{'article.updated_at'|translate}} {{ review.updated_at }}</div>
+                        </div>
+                        <div class="update-delete-review-icons-holder">
+                            <mat-icon *ngIf="userId === review.commenter_id" class="update-review-icon" (click)="openEditDialog(review)">edit</mat-icon>
+                            <mat-icon *ngIf="roleId === '1' || userId === article.author_id || userId === review.commenter_id" class="delete-review-icon" (click)="confirmDelete(review.id)">delete_outline</mat-icon>
+                        </div>
+                    </div>
+                    <div class="review-title-holder">
+                        <div class="review-title">{{ review.comment_title }}</div>
+                    </div>
+                </div>
+                <p class="review-comment-holder">{{ review.comment_content }}</p>
+            </div>
+        </div>
+        <div *ngIf="userId" class="review-form-header">
+            <h3>{{'article.write_your_comment'|translate}}</h3>
+        </div>
+        <div *ngIf="userId" class="review-form">
+            <form [formGroup]="commentForm" (ngSubmit)="submitComment()">
+                <div>
+                    <label for="title">{{'article.reviews_form_title'|translate}}</label>
+                    <input id="title" formControlName="comment_title" type="text" class="form-control" />
+                </div>
+                <div>
+                    <label for="reviewContent">{{'article.reviews_form_review'|translate}}</label>
+                    <textarea id="reviewContent" formControlName="comment_content" class="form-control" placeholder="{{'article.reviews_form_textarea_placeholder'|translate}}"></textarea>
+                </div>
+                <button type="submit" [disabled]="commentForm.invalid" class="btn btn-primary">{{'article.reviews_form_submit'|translate}}</button>
+            </form>
+        </div>
+    </div>
+</div>

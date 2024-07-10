@@ -1,0 +1,100 @@
+@import '/src/styles.less';
+.articles-header {
+    margin-bottom: 0px !important;
+}
+.add-article-holder {
+    button {
+        padding: 5px !important;
+        background-color: rgb(73, 73, 255) !important;
+        color: @primaryWhite !important;
+
+        &:hover {
+            background-color: rgb(26, 26, 172) !important;
+        }
+    }
+}
+.articles-row {
+    border: 1px solid @primaryWhite;
+    border-radius: 5px;
+    margin: 0px !important;
+    margin-bottom: 10px !important;
+    .article-container {
+        color: @primaryWhite;
+        padding: 30px;
+        @media (max-width: @sizes[tablet]) {
+            padding-top: 10px !important;
+        }
+        .whole-article-container {
+            border-bottom: 1px solid @primaryWhite;
+            .article-comment-holder {
+                text-align: center;
+                margin-top: 15px;
+                min-height: 80px;
+            }
+            .article-list-image-main-container {
+                min-height: 300px;
+                max-height: 300px;
+                @media (max-width: @sizes[tablet]) {
+                    min-height: auto !important;
+                    max-height: auto !important;
+                }
+                .article-list-image-holder {
+                    text-align: center;
+                    img {
+                        min-height: 300px;
+                        max-height: 300px;
+                        max-width: 580px;
+                        border-radius: 5px;
+                        @media (max-width: @sizes[desktop]) {
+                            margin-top: 15px;
+                            min-height: 150px;
+                            max-height: 150px;
+                            max-width: 285px;
+                        }
+                    }
+                }
+            }
+            .article-holder {
+                text-align: center;
+                .article-title-holder {
+                    padding: 10px;
+                    min-height: 100px;
+                    max-height: 100px;
+                }
+            }
+            .read-more-article-holder {
+                text-align: center;
+                button {
+                    padding: 5px !important;
+                    @media (max-width: @sizes[tablet]) {
+                        width: 100%;
+                    }
+                }
+            }
+            .article-popup {
+                position: relative;
+            }
+              
+            .article-popup .hover-popup {
+                visibility: hidden;
+                background-color: black;
+                color: white;
+                text-align: center;
+                border-radius: 6px;
+                padding: 5px;
+                position: absolute;
+                z-index: 1;
+                bottom: 125%;
+                left: 50%;
+                margin-left: -60px;
+                opacity: 0;
+                transition: opacity 0.3s;
+            }
+              
+            .article-popup:hover .hover-popup {
+                visibility: visible;
+                opacity: 1;
+            }
+        }
+    }
+}

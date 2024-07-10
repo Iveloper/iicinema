@@ -1,0 +1,109 @@
+@import '/src/styles.less';
+.production-reviews-section {
+    border: 0.5px solid @primaryWhite;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    .review-container {
+        padding: 10px;
+        margin-bottom: 15px;
+        color: @primaryWhite;
+        .whole-review-container {
+            padding-left: 50px;
+            padding-right: 50px;
+            border-bottom: 1px solid @primaryWhite;
+            .review-holder {
+                text-align: center;
+                .review-user-info-holder {
+                    margin-bottom: 10px;
+                    .username {
+                        font-weight: bold;
+                    }
+                    .update-delete-review-icons-holder {
+                        mat-icon {
+                            cursor: pointer;
+                        }
+                    }
+                }
+                .review-title {
+                    font-size: 1.5em;
+                } 
+            }
+            .review-comment-holder {
+                padding: 10px;
+                font-size: 1.1em;
+                text-align: center;
+            }
+        }
+    }
+    .review-form-header {
+        h3 {
+            text-align: center;
+        }
+    }
+    .review-form {
+        padding-left: 10px;
+        padding-right: 10px;
+        display: flex;
+        justify-content: center;
+        color: @primaryWhite;
+        form {
+            width: 40%;
+            @media (max-width: @sizes[tablet]) {
+                width: 100%;
+            }
+            label {
+                font-size: 16px;
+                margin: 5px;
+            }
+            button {
+                width: 100%;
+                &:hover {
+                    background-color: gray !important;
+                    color: @primaryWhite !important;
+                }
+            }
+            .form-control {
+                margin-bottom: 10px;
+            }
+            .btn-primary {
+                background-color: @primaryWhite;
+                color: @primaryDark;
+                border: none;
+            }
+            .btn-primary[disabled] {
+                background-color: grey;
+                color: @primaryWhite;
+            }
+        }
+    }
+}
+
+// Style popup when hovering on 'created_at' date
+.review-popup {
+    position: relative;
+    .review-date {
+        font-size: 1em;
+        color: @primaryWhite;
+    }
+}
+  
+.review-popup .hover-popup {
+    visibility: hidden;
+    background-color: black;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+  
+.review-popup:hover .hover-popup {
+    visibility: visible;
+    opacity: 1;
+}

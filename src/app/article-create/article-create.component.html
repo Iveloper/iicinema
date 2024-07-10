@@ -1,0 +1,24 @@
+<div *ngIf="roleId === '1' || roleId ==='3'" class="container col-md-12">
+    <h2>{{'article.create_new'|translate}}</h2>
+    <form [formGroup]="articleForm" (ngSubmit)="submitArticle()">
+      <div class="form-group">
+        <label for="title">{{'article.title'|translate}}</label>
+        <input type="text" id="title" formControlName="title" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label for="content">{{'article.content'|translate}}</label>
+        <textarea id="content" formControlName="content" class="form-control" rows="5" placeholder="{{'article.content_placeholder'|translate}}"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="images">{{'article.upload_images'|translate}}</label>
+        <input type="file" class="form-control-file" id="images" name="images" (change)="onFileSelected($event)">
+      </div>
+      <!-- Dynamic input fields for additional images -->
+    <div *ngFor="let image of additionalImages">
+        <div class="form-group">
+        <input type="file" class="form-control-file additional-images-input" name="images" (change)="onFileSelected($event)">
+        </div>
+    </div>
+      <button type="submit" class="btn btn-primary" [disabled]="articleForm.invalid">{{'article.submit'|translate}}</button>
+    </form>
+</div>

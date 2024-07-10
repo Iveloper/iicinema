@@ -14,10 +14,10 @@
                     <img [src]="movie.image.url"/>
                 </div>
                 <h2 class="title-holder"> {{movie.title}} </h2>
-                <div *ngIf="userId" class="favorite-icon-holder" (click)="authService.toggleFavorite('movie', movie.id)">
+                <div *ngIf="userId" class="favorite-icon-holder" (click)="favoriteService.toggleFavorite('movie', movie.id)">
                   <span>
                     <mat-icon>
-                      {{ authService.isFavorite('movie', movie.id) ? 'favorite' : 'favorite_border' }}
+                      {{ favoriteService.isFavorite('movie', movie.id) ? 'favorite' : 'favorite_border' }}
                     </mat-icon>
                   </span>
                 </div>
@@ -151,7 +151,7 @@
                     <div class="cast-info-holder d-flex align-items-center">
                         <div class="cast-image-holder">
                             <a routerLink="/actors/{{credit.id}}">
-                                <img class="actor-icon" src="{{credit.image.url}}">
+                                <img *ngIf="credit.image" class="actor-icon" src="{{credit.image.url}}">
                             </a>
                         </div>
                         <div class="cast-role-holder d-grid">
@@ -191,3 +191,4 @@
         </section>
     </div>
 </div>
+<app-shows-movies-reviews [productionId]="movieId"></app-shows-movies-reviews>

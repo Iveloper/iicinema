@@ -9,6 +9,12 @@ import { Rating } from 'src/app/interfaces/rating';
 import { Review } from 'src/app/interfaces/review';
 import { Show } from 'src/app/interfaces/show';
 import { AuthService } from '../config/auth.service';
+import { FavoriteService } from '../config/favorite.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { EditReviewNewsDialogComponent } from '../edit-review-news-dialog/edit-review-news-dialog.component';
+import { ConfirmDeleteDialogComponent } from '../confirm-delete-dialog/confirm-delete-dialog.component';
+import { RegistrationResultDialogComponent } from '../registration-result-dialog/registration-result-dialog.component';
 
 @Component({
   selector: 'app-show-detail',
@@ -35,6 +41,7 @@ export class ShowDetailComponent implements OnInit, OnDestroy {
   private _destroy$ = new Subject<boolean>();
   public userId: string | null = '';
 
+
   //Paginator config
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   public currentPage: number = 0;
@@ -43,7 +50,10 @@ export class ShowDetailComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private generalService: GeneralService,
-    public authService: AuthService
+    public authService: AuthService,
+    public favoriteService: FavoriteService,
+    private fb: FormBuilder,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {

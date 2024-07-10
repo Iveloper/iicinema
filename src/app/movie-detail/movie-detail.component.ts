@@ -9,6 +9,7 @@ import { Principals } from 'src/app/interfaces/principals';
 import { Rating } from 'src/app/interfaces/rating';
 import { Review } from 'src/app/interfaces/review';
 import { AuthService } from '../config/auth.service';
+import { FavoriteService } from '../config/favorite.service';
 
 @Component({
   selector: 'app-movie-detail',
@@ -16,7 +17,6 @@ import { AuthService } from '../config/auth.service';
   styleUrls: ['./movie-detail.component.less']
 })
 export class MovieDetailComponent implements OnInit, OnDestroy {
-
   public movieId: string = String(this.route.snapshot.paramMap.get('id'));
   public movie!: Movie;
   public movieCredits!: Principals[];
@@ -32,6 +32,7 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
   public toggleDescription: boolean = false;
   private _destroy$ = new Subject<boolean>();
   public userId: string | null = '';
+  public roleId: string | null = '';
 
   //Paginator config
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -41,13 +42,15 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private generalService: GeneralService,
-    public authService: AuthService
-  ) { }
+    public authService: AuthService,
+    public favoriteService: FavoriteService
+  ) {
+   }
 
   ngOnInit(): void {
-    console.log(this.movie);
     this.loadMovie();
     this.userId = localStorage.getItem('user_id');
+    this.roleId = localStorage.getItem('role_id');
   }
 
   public loadMovie() {
@@ -112,7 +115,7 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
 
   public moreLikeThisDetails(mltIds: String[]) {
     this.generalService.getMoreLikeThisDetails(mltIds).subscribe(response =>
-       this.moreLikeThisDetail = response
+      this.moreLikeThisDetail = response
     );
   }
 

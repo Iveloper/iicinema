@@ -10,7 +10,6 @@ export class FavoritesDialogService {
 
   openDialog(message: string): void {
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.hasBackdrop = false;
     dialogConfig.data = message;
     const dialogRef = this.dialog.open(FavoritesDialogComponent, dialogConfig);
 

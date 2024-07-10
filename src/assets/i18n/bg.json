@@ -28,7 +28,17 @@
         "user_reviews": "Мнения на потребители",
         "as": "Като: ",
         "top_billed_cast": "Главни роли",
-        "more_like_this": "Виж още"
+        "more_like_this": "Виж още",
+        "reviews_registered_users": "Мнения на регистрирани потребители",
+        "updated_at": "Последно редактирано на: ",
+        "reviews_form_edit_dialog": "Редактирай мнение",
+        "reviews_form_title": "Заглавие",
+        "reviews_form_title_placeholder": "Заглавие на ревюто",
+        "reviews_form_review": "Твоето мнение",
+        "reviews_form_textarea_placeholder": "Остави твоите впечатления тук...",
+        "reviews_form_cancel": "Отказ",
+        "reviews_form_submit": "Запази",
+        "write_your_review": "Напиши отзив"
     },
     "show-detail": {
         "episodes": "епизода",
@@ -106,14 +116,20 @@
       "log_out": "Излез",
       "empty_shows_favorites": "Все още нямате любими сериали",
       "empty_movies_favorites": "Все още нямате любими филми",
-      "empty_actors_favorites": "Все още нямате любими актьори"
+      "empty_actors_favorites": "Все още нямате любими актьори",
+      "unapproved_approve_btn": "Одобри",
+      "unapproved_delete_btn": "Премахни",
+      "approve_new_registries": "Чакащи одобрение",
+      "all_users_and_authors": "Членове",
+      "role": "Роля"
     },
     "navigation": {
       "movies": "Филми",
       "home": "Начало",
       "tv_shows": "Сериали",
       "actors": "Актьори",
-      "genres": "Жанрове"
+      "genres": "Жанрове",
+      "articles": "Статии"
     },
     "genre": {
       "Action": "Екшън",
@@ -143,5 +159,29 @@
       "Thriller": "Трилъри",
       "War": "Военни",
       "Western": "Уестърни"
+    },
+    "article": {
+        "articles": "Статии",
+        "read_more": "Прочети повече",
+        "updated_at": "Последно редактирана на: ",
+        "add_article": "Добави",
+        "create_new": "Създай нова статия",
+        "title": "Заглавие",
+        "content": "Съдържание",
+        "content_placeholder": "Напишете Вашата статия тук...",
+        "upload_images": "Качете снимка",
+        "submit": "Запазване",
+        "comments": "Коментари",
+        "write_your_comment": "Остави коментар",
+        "reviews_form_title": "Заглавие",
+        "reviews_form_review": "Коментар",
+        "reviews_form_textarea_placeholder": "Напиши своя коментар тук...",
+        "reviews_form_submit": "Запази",
+        "comments_form_edit_dialog": "Поправи форма",
+        "comments_form_title": "Заглавие",
+        "comments_form_review": "Статия",
+        "comments_form_textarea_placeholder": "Напишете Вашата статия тук...",
+        "comments_form_submit": "Запази",
+        "comments_form_cancel": "Отказ"
     }
 }

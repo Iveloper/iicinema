@@ -28,7 +28,17 @@
         "user_reviews": "User reviews",
         "as": "As: ",
         "top_billed_cast": "Top billed cast",
-        "more_like_this": "More like this"
+        "more_like_this": "More like this",
+        "reviews_registered_users": "Reviews of registered users",
+        "updated_at": "Last updated at: ",
+        "reviews_form_edit_dialog": "Edit review",
+        "reviews_form_title": "Title",
+        "reviews_form_title_placeholder": "Title of your review",
+        "reviews_form_review": "Your review",
+        "reviews_form_textarea_placeholder": "Leave your impressions here...",
+        "reviews_form_cancel": "Cancel",
+        "reviews_form_submit": "Save",
+        "write_your_review": "Leave a review"
     },
     "show-detail": {
         "episodes": "episodes",
@@ -106,14 +116,20 @@
       "log_out": "Log out",
       "empty_shows_favorites": "You don't have favorite shows yet",
       "empty_movies_favorites": "You don't have favorite movies yet",
-      "empty_actors_favorites": "You don't have favorite actors yet"
+      "empty_actors_favorites": "You don't have favorite actors yet",
+      "unapproved_approve_btn": "Approve",
+      "unapproved_delete_btn": "Delete",
+      "approve_new_registries": "Waiting approval",
+      "all_users_and_authors": "Members",
+      "role": "Role"
     },
     "navigation": {
       "movies": "Movies",
       "home": "Home",
       "tv_shows": "TV Shows",
       "actors": "Actors",
-      "genres": "Genres"
+      "genres": "Genres",
+      "articles": "Articles"
     },
     "genre": {
       "Action": "Action",
@@ -143,5 +159,29 @@
       "Thriller": "Thriller",
       "War": "War",
       "Western": "Western"
+    },
+    "article": {
+        "articles": "Articles",
+        "read_more": "Read More",
+        "updated_at": "Last updated at: ",
+        "add_article": "Add",
+        "create_new": "Create new article",
+        "title": "Title",
+        "content": "Content",
+        "content_placeholder": "Write your article here...",
+        "upload_images": "Upload image",
+        "submit": "Submit",
+        "comments": "Comments",
+        "write_your_comment": "Leave a comment",
+        "reviews_form_title": "Title",
+        "reviews_form_review": "Comment",
+        "reviews_form_textarea_placeholder": "Write your comment here...",
+        "reviews_form_submit": "Submit",
+        "comments_form_edit_dialog": "Edit article",
+        "comments_form_title": "Title",
+        "comments_form_review": "Content",
+        "comments_form_textarea_placeholder": "Leave your article content here...",
+        "comments_form_submit": "Submit",
+        "comments_form_cancel": "Cancel"
     }
 }

@@ -15,10 +15,10 @@
                     </span>
                 </h2>
             </a>
-            <div *ngIf="userId" class="favorite-icon-holder" (click)="authService.toggleFavorite('actor', actor.id)">
+            <div *ngIf="userId" class="favorite-icon-holder" (click)="favoriteService.toggleFavorite('actor', actor.id)">
               <span>
                 <mat-icon>
-                  {{ authService.isFavorite('actor', actor.id) ? 'favorite' : 'favorite_border' }}
+                  {{ favoriteService.isFavorite('actor', actor.id) ? 'favorite' : 'favorite_border' }}
                 </mat-icon>
               </span>
             </div>

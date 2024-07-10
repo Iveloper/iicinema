@@ -46,7 +46,7 @@ export class LoginComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result === 'success') {
+      if (title === 'Success') {
         this.router.navigate(['/profile']);
       }
     });

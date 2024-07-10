@@ -5,6 +5,7 @@ import { Principals } from 'src/app/interfaces/principals';
 import { GeneralService } from 'src/app/config/general.service';
 import { MessageService } from 'src/app/message.service';
 import { AuthService } from '../config/auth.service';
+import { FavoriteService } from '../config/favorite.service';
 
 @Component({
   selector: 'app-shows',
@@ -21,7 +22,8 @@ export class ShowsComponent implements OnInit, OnDestroy {
   constructor(
     private generalService: GeneralService,
     private messageService: MessageService,
-    public authService: AuthService
+    public authService: AuthService,
+    public favoriteService: FavoriteService
   ) { }
 
   ngOnInit(): void {

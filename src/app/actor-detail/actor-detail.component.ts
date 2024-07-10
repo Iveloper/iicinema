@@ -6,6 +6,7 @@ import { Awards } from 'src/app/interfaces/awards';
 import { Bio } from 'src/app/interfaces/bio';
 import { KnownFor } from 'src/app/interfaces/known_for';
 import { AuthService } from '../config/auth.service';
+import { FavoriteService } from '../config/favorite.service';
 
 @Component({
   selector: 'app-actor-detail',
@@ -26,7 +27,8 @@ export class ActorDetailComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private actorService: ActorService,
-    public authService: AuthService
+    public authService: AuthService,
+    public favoriteService: FavoriteService
   ) { }
 
   ngOnInit(): void {

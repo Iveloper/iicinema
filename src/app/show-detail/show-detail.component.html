@@ -14,10 +14,10 @@
                     <img [src]="show.image.url"/>
                 </div>
                 <h2 class="title-holder"> {{show.title}} </h2>
-                <div *ngIf="userId" class="favorite-icon-holder" (click)="authService.toggleFavorite('show', show.id)">
+                <div *ngIf="userId" class="favorite-icon-holder" (click)="favoriteService.toggleFavorite('show', show.id)">
                   <span>
                     <mat-icon>
-                      {{ authService.isFavorite('show', show.id) ? 'favorite' : 'favorite_border' }}
+                      {{ favoriteService.isFavorite('show', show.id) ? 'favorite' : 'favorite_border' }}
                     </mat-icon>
                   </span>
                 </div>
@@ -199,4 +199,5 @@
             </ng-container>
         </section>
     </div>
-  </div>
+</div>
+<app-shows-movies-reviews [productionId]="showId"></app-shows-movies-reviews>

@@ -5,6 +5,7 @@ import { Principals } from 'src/app/interfaces/principals';
 import { GeneralService } from 'src/app/config/general.service';
 import { MessageService } from 'src/app/message.service';
 import { AuthService } from './../config/auth.service';
+import { FavoriteService } from '../config/favorite.service';
 
 @Component({
   selector: 'app-movies',
@@ -21,7 +22,8 @@ export class MoviesComponent implements OnInit, OnDestroy {
   constructor(
     private generalService: GeneralService,
     private messageService: MessageService,
-    public authService: AuthService
+    public authService: AuthService,
+    public favoriteService: FavoriteService
   ) { }
 
   ngOnInit(): void {
@@ -29,7 +31,7 @@ export class MoviesComponent implements OnInit, OnDestroy {
     this.userId = localStorage.getItem('user_id');
   }
 
-  loadMovies(movieName: string = 'game') {
+  loadMovies(movieName: string = 'star w') {
     this.generalService.title$.subscribe(title => {
       this.loading$ = this.generalService.getLoading();
       if(title) {

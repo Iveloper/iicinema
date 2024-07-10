@@ -41,6 +41,14 @@ import { RegistrationResultDialogComponent } from './registration-result-dialog/
 import { MatDialogModule } from '@angular/material/dialog';
 import { ProfileComponent } from './profile/profile.component';
 import { FavoritesDialogComponent } from './favorites-dialog/favorites-dialog.component';
+import { ConfirmDeleteDialogComponent } from './confirm-delete-dialog/confirm-delete-dialog.component';
+import { EditReviewNewsDialogComponent } from './edit-review-news-dialog/edit-review-news-dialog.component';
+import { ArticlesComponent } from './articles/articles.component';
+import { ArticleDetailComponent } from './article-detail/article-detail.component';
+import { ArticleCreateComponent } from './article-create/article-create.component';
+import { EditArticleCommentsDialogComponent } from './edit-article-comments-dialog/edit-article-comments-dialog.component';
+import { ShowsMoviesReviewsComponent } from './shows-movies-reviews/shows-movies-reviews.component';
+import { EditArticleContentDialogComponent } from './edit-article-content-dialog/edit-article-content-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,7 +74,15 @@ import { FavoritesDialogComponent } from './favorites-dialog/favorites-dialog.co
     GenreTitlesComponent,
     RegistrationResultDialogComponent,
     ProfileComponent,
-    FavoritesDialogComponent
+    FavoritesDialogComponent,
+    ConfirmDeleteDialogComponent,
+    EditReviewNewsDialogComponent,
+    ArticlesComponent,
+    ArticleDetailComponent,
+    ArticleCreateComponent,
+    EditArticleCommentsDialogComponent,
+    ShowsMoviesReviewsComponent,
+    EditArticleContentDialogComponent
   ],
   imports: [
     BrowserModule,
